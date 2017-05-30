@@ -18,7 +18,7 @@ public class ScannerExample {
 
         sum = a + b;
 
-        System.out.println("Sum is: "+sum);
+        System.out.println("Sum is: " + sum);
     }
 }
 

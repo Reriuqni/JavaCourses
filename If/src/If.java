@@ -8,7 +8,7 @@ public class If {
 
         // 1
         System.out.println("1. Дано целое число. Если оно является положительным, то прибавить к нему 1; в противном случае не изменять его. Вывести полученное число.");
-        System.out.println("Введите число a:");
+        System.out.print("Введите число a:");
         int a = s.nextInt();
         if (a > 0) a++;
         System.out.println("a=" + a);
@@ -16,7 +16,7 @@ public class If {
 
         // 2
         System.out.println("2. Дано целое число. Если оно является положительным, то прибавить к нему 1; в противном случае вычесть из него 2. Вывести полученное число.");
-        System.out.println("Введите число a:");
+        System.out.print("Введите число a:");
         a = s.nextInt();
         if (a > 0) {
             a++;
@@ -30,7 +30,7 @@ public class If {
         System.out.println("3. Дано целое число. Если оно является положительным, то прибавить к не-\n" +
                 "му 1; если отрицательным, то вычесть из него 2; если нулевым, то заме-\n" +
                 "нить его на 10. Вывести полученное число.");
-        System.out.println("Введите число a:");
+        System.out.print("Введите число a:");
         a = s.nextInt();
         if (a > 0) {
             a++;
@@ -47,11 +47,11 @@ public class If {
         // 4
         System.out.println("4. Даны три целых числа. Найти количество положительных чисел в исход-\n" +
                 "ном наборе.");
-        System.out.println("Введите число a:");
+        System.out.print("Введите число a:");
         a = s.nextInt();
-        System.out.println("Введите число b:");
+        System.out.print("Введите число b:");
         int b = s.nextInt();
-        System.out.println("Введите число c:");
+        System.out.print("Введите число c:");
         int c = s.nextInt();
         int plus_amount = 0;
         if (a > 0) {
@@ -69,11 +69,11 @@ public class If {
         // 5
         System.out.println("5. Даны три целых числа. Найти количество положительных и количество от-\n" +
                 "рицательных чисел в исходном наборе.");
-        System.out.println("Введите число a:");
+        System.out.print("Введите число a:");
         a = s.nextInt();
-        System.out.println("Введите число b:");
+        System.out.print("Введите число b:");
         b = s.nextInt();
-        System.out.println("Введите число c:");
+        System.out.print("Введите число c:");
         c = s.nextInt();
         int positive_amount = 0, negative_amount = 0;
         positive_amount += (a == 0) ? 0 : (a > 0) ? 1 : 0;
@@ -111,9 +111,9 @@ public class If {
 
         // 6
         System.out.println("6. Даны два числа. Вывести большее из них.");
-        System.out.println("Введите число a:");
+        System.out.print("Введите число a:");
         a = s.nextInt();
-        System.out.println("Введите число b:");
+        System.out.print("Введите число b:");
         b = s.nextInt();
         int max = (a > b) ? a : b;
         System.out.println("Max=" + max);
@@ -121,9 +121,9 @@ public class If {
 
         // 7
         System.out.println("7. Даны два числа. Вывести порядковый номер меньшего из них");
-        System.out.println("Введите число b:");
+        System.out.print("Введите число b:");
         b = s.nextInt();
-        System.out.println("Введите число c:");
+        System.out.print("Введите число c:");
         c = s.nextInt();
         int number = (b < c) ? 1 : 2;
         System.out.println("Номер: " + number);
@@ -131,9 +131,9 @@ public class If {
 
         // 8
         System.out.println("8. Даны два числа. Вывести вначале большее, а затем меньшее из них.");
-        System.out.println("Введите число b:");
+        System.out.print("Введите число b:");
         b = s.nextInt();
-        System.out.println("Введите число c:");
+        System.out.print("Введите число c:");
         c = s.nextInt();
         int min;
         max = (b > c) ? b : c;
@@ -146,9 +146,9 @@ public class If {
         System.out.println("9. Даны две переменные вещественного типа: A, B. Перераспределить значе-\n" +
                 "ния данных переменных так, чтобы в A оказалось меньшее из значений,\n" +
                 "а в B — большее. Вывести новые значения переменных A и B.");
-        System.out.println("Введите число a:");
+        System.out.print("Введите число a:");
         a = s.nextInt();
-        System.out.println("Введите число b:");
+        System.out.print("Введите число b:");
         b = s.nextInt();
         if (a > b) {
             a = a ^ b ^ (b = a);
@@ -161,9 +161,9 @@ public class If {
                 "присвоить каждой переменной сумму этих значений, а если равны, то при-\n" +
                 "своить переменным нулевые значения. Вывести новые значения перемен-\n" +
                 "ных A и B.");
-        System.out.println("Введите число a:");
+        System.out.print("Введите число a:");
         a = s.nextInt();
-        System.out.println("Введите число b:");
+        System.out.print("Введите число b:");
         b = s.nextInt();
         a = b = (a != b) ? a + b : 0;
         System.out.println("A=" + a + " B=" + b);
@@ -174,9 +174,9 @@ public class If {
                 "присвоить каждой переменной большее из этих значений, а если равны, то\n" +
                 "присвоить переменным нулевые значения. Вывести новые значения пере-\n" +
                 "менных A и B.");
-        System.out.println("Введите число a:");
+        System.out.print("Введите число a:");
         a = s.nextInt();
-        System.out.println("Введите число b:");
+        System.out.print("Введите число b:");
         b = s.nextInt();
         a = b = (a == b) ? 0 : (a > b) ? a : b;
         System.out.println("A=" + a + " B=" + b);
@@ -184,11 +184,11 @@ public class If {
 
         // 12
         System.out.println("12. Даны три числа. Найти наименьшее из них.");
-        System.out.println("Введите число a:");
+        System.out.print("Введите число a:");
         a = s.nextInt();
-        System.out.println("Введите число b:");
+        System.out.print("Введите число b:");
         b = s.nextInt();
-        System.out.println("Введите число c:");
+        System.out.print("Введите число c:");
         c = s.nextInt();
         min = (a > b) ? b : (a > c) ? c : a;
         System.out.println("min=" + min);
@@ -196,20 +196,47 @@ public class If {
         System.out.println("--------------------------------");
 
         // 13
-        System.out.println("Даны три числа. Найти среднее из них (то есть число, расположенное ме-\n" +
+        System.out.println("13. Даны три числа. Найти среднее из них (то есть число, расположенное ме-\n" +
                 "жду наименьшим и наибольшим).");
-        System.out.println("Введите число a:");
+        System.out.print("Введите число a:");
         a = s.nextInt();
-        System.out.println("Введите число b:");
+        System.out.print("Введите число b:");
         b = s.nextInt();
-        System.out.println("Введите число c:");
+        System.out.print("Введите число c:");
         c = s.nextInt();
-        max = (a > b) ? a : (b > c) ? b : c;
+        max = (a < b) ? b : (a < c) ? c : a;
         min = (a > b) ? b : (a > c) ? c : a;
-        int average = a + b + c - max - min;
+        int average = 0;
+        if ((a > min) && (a < max)) average = a;
+        if ((b > min) && (b < max)) average = b;
+        if ((c > min) && (c < max)) average = c;
         System.out.println("average=" + average);
         System.out.println("--------------------------------");
 
+        // 14
+        System.out.println("14. Даны три числа. Вывести вначале наименьшее, а затем наибольшее из дан-\n" +
+                "ных чисел.");
+        System.out.print("Введите число a:");
+        a = s.nextInt();
+        System.out.print("Введите число b:");
+        b = s.nextInt();
+        System.out.print("Введите число c:");
+        c = s.nextInt();
+        max = (a < b) ? b : (a < c) ? c : a;
+        min = (a > b) ? b : (a > c) ? c : a;
+        System.out.println("min=" + min + " max=" + max);
+        System.out.println("--------------------------------");
+
+        // 15
+        System.out.println("15. Даны три числа. Найти сумму двух наибольших из них.");
+        System.out.print("Введите число a:");
+        a = s.nextInt();
+        System.out.print("Введите число b:");
+        b = s.nextInt();
+        System.out.print("Введите число c:");
+        c = s.nextInt();
+
+        System.out.println("--------------------------------");
 
     }
 }
