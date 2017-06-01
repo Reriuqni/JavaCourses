@@ -184,58 +184,86 @@ public class If {
 
         // 12
         System.out.println("12. Даны три числа. Найти наименьшее из них.");
-        System.out.print("Введите число a:");
+        System.out.print("Введите число a: ");
         a = s.nextInt();
-        System.out.print("Введите число b:");
+        System.out.print("Введите число b: ");
         b = s.nextInt();
-        System.out.print("Введите число c:");
+        System.out.print("Введите число c: ");
         c = s.nextInt();
-        min = (a > b) ? b : (a > c) ? c : a;
-        System.out.println("min=" + min);
-        System.out.println("min(Math.min)=" + Math.min(a, Math.min(b, c)));
+        //min = (a > b) ? b : (a > c) ? c : a; // try 100, -100, -200
+        min = a;
+        min = (b < min) ? b : min;
+        min = (c < min) ? c : min;
+        System.out.println("min = " + min);
+        System.out.println("min(Math.min) = " + Math.min(a, Math.min(b, c)));
         System.out.println("--------------------------------");
 
         // 13
         System.out.println("13. Даны три числа. Найти среднее из них (то есть число, расположенное ме-\n" +
                 "жду наименьшим и наибольшим).");
-        System.out.print("Введите число a:");
+        System.out.print("Введите число a: ");
         a = s.nextInt();
-        System.out.print("Введите число b:");
+        System.out.print("Введите число b: ");
         b = s.nextInt();
-        System.out.print("Введите число c:");
+        System.out.print("Введите число c: ");
         c = s.nextInt();
-        max = (a < b) ? b : (a < c) ? c : a;
-        min = (a > b) ? b : (a > c) ? c : a;
+        min = a;
+        min = (b < min) ? b : min;
+        min = (c < min) ? c : min;
+        max = a;
+        max = (b > max) ? b : max;
+        max = (c > max) ? c : max;
         int average = 0;
         if ((a > min) && (a < max)) average = a;
         if ((b > min) && (b < max)) average = b;
         if ((c > min) && (c < max)) average = c;
-        System.out.println("average=" + average);
+        System.out.println("average = " + average);
         System.out.println("--------------------------------");
 
         // 14
         System.out.println("14. Даны три числа. Вывести вначале наименьшее, а затем наибольшее из дан-\n" +
                 "ных чисел.");
-        System.out.print("Введите число a:");
+        System.out.print("Введите число a: ");
         a = s.nextInt();
-        System.out.print("Введите число b:");
+        System.out.print("Введите число b: ");
         b = s.nextInt();
-        System.out.print("Введите число c:");
+        System.out.print("Введите число c: ");
         c = s.nextInt();
-        max = (a < b) ? b : (a < c) ? c : a;
-        min = (a > b) ? b : (a > c) ? c : a;
-        System.out.println("min=" + min + " max=" + max);
+        min = a;
+        min = (b < min) ? b : min;
+        min = (c < min) ? c : min;
+        max = a;
+        max = (b > max) ? b : max;
+        max = (c > max) ? c : max;
+        System.out.println("min = " + min + " max = " + max);
         System.out.println("--------------------------------");
 
         // 15
         System.out.println("15. Даны три числа. Найти сумму двух наибольших из них.");
-        System.out.print("Введите число a:");
+        System.out.print("Введите число a: ");
         a = s.nextInt();
-        System.out.print("Введите число b:");
+        System.out.print("Введите число b: ");
         b = s.nextInt();
-        System.out.print("Введите число c:");
+        System.out.print("Введите число c: ");
         c = s.nextInt();
-
+        min = a;
+        min = (b < min) ? b : min;
+        min = (c < min) ? c : min;
+        int sum;
+        if (a < b) {
+            if (a < c) {
+                sum = b + c;
+            } else {
+                sum = a + b;
+            }
+        } else {
+            if (b < c) {
+                sum = a + c;
+            } else {
+                sum = b + a;
+            }
+        }
+        System.out.println("Sum = " + sum);
         System.out.println("--------------------------------");
 
     }
