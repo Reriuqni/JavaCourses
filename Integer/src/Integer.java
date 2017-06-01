@@ -1,12 +1,6 @@
-package org.javacoursesbrovary.example;
-
 public class Integer {
 
-    Integer() {
-
-        System.out.println("------------------------------------");
-        System.out.println("-= Integer start =-");
-        System.out.println("------------------------------------");
+    public static void main(String[] args) {
 
         // 1
         int lcm = 123, lmeters = lcm / 100;
@@ -173,7 +167,8 @@ public class Integer {
         System.out.println("------------------------------------");
 
         // 28
-        day = 24; int nday = 4;
+        day = 24;
+        int nday = 4;
         weekday = (day - 1 + nday - 1) % 7 + 1;
         System.out.println("Weekday=" + weekday);
         System.out.println("------------------------------------");
@@ -188,10 +183,6 @@ public class Integer {
         int year = 1600;
         int stoletie = (year - 1) / 100 + 1;
         System.out.println("year=" + year + " stoletie=" + stoletie);
-
-        System.out.println("------------------------------------");
-        System.out.println("-= Integer end =-");
-        System.out.println("------------------------------------");
 
     }
 }

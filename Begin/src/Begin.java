@@ -1,12 +1,6 @@
-package org.javacoursesbrovary.example;
-
 public class Begin {
 
-    Begin() {
-
-        System.out.println("------------------------------------");
-        System.out.println("-= Begin start =-");
-        System.out.println("------------------------------------");
+    public static void main(String[] args) {
 
         // 1
         int a1 = 3, p1;
@@ -299,10 +293,6 @@ public class Begin {
         System.out.println("x=" + x40 + " y=" + y40);
         System.out.println("------------------------------------");
 
-        System.out.println("------------------------------------");
-        System.out.println("-= Begin end =-");
-        System.out.println("------------------------------------");
-
     }
-
 }
+

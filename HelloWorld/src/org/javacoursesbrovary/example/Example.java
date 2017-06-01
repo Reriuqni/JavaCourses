@@ -8,11 +8,6 @@ public class Example {
 
         System.out.print("Hi, bro! \n");
 
-        // ---
-        Begin Bb = new Begin();
-        Integer Ii = new Integer();
-        // ---
-
         int a = 5, b = 7, c = a + b;
 
         System.out.println("My age is " + c);
