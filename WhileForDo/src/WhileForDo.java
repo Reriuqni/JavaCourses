@@ -37,6 +37,7 @@ public class WhileForDo {
             System.out.println("Неверные значения A, B");
         }
 
+        // for statement
         int i ;
         for (i = 1, b = i; i < 10 && b < 20; i *= 2) {
             b += i;
