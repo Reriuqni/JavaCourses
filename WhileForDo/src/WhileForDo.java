@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class WhileForDo {
@@ -37,14 +38,29 @@ public class WhileForDo {
             System.out.println("Неверные значения A, B");
         }
 
-        // for statement
-        int i ;
-        for (i = 1, b = i; i < 10 && b < 20; i *= 2) {
-            b += i;
-            System.out.println(i + "-" + b);
+        System.out.println("For:");
+        for (int i = 0; i < 10; i++) System.out.print(i + " ");
+
+        System.out.println("\nWhile:");
+
+        {
+            int i = 0;
+            while (i < 10) {
+                System.out.print(i + " ");
+                i++;
+            }
         }
 
+        System.out.print("\n\nВведите число: ");
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Random r = new Random();
+        for (int i = 0; i < n; i++) {
+            System.out.println(r.nextInt(11) - 5);
+            System.out.println((int) (10 * Math.random()) - 5);
+        }
 
+        sc.close();
     }
 }
 
