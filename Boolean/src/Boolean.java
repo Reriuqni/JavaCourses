@@ -537,8 +537,8 @@ public class Boolean {
         y1 = s.nextInt();
         iscorrectx = (x >= 1) && (x <= 8) && (y >= 1) && (y <= 8);
         iscorrectx1 = (x1 >= 1) && (x1 <= 8) && (y1 >= 1) && (y1 <= 8);
-        boolean xhorse = (Math.abs(x1 - x) == 2 && Math.abs(y1 - y) == 1);
-        boolean yhorse = (Math.abs(x1 - x) == 1 && Math.abs(y1 - y) == 2);
+        boolean xhorse = (Math.abs(x1 - x) == 2) && (Math.abs(y1 - y) == 1);
+        boolean yhorse = (Math.abs(x1 - x) == 1) && (Math.abs(y1 - y) == 2);
         result = iscorrectx && iscorrectx1 && (xhorse || yhorse);
         System.out.println(result);
         System.out.println("--------------------------------");
