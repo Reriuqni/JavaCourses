@@ -190,7 +190,6 @@ public class If {
         b = s.nextInt();
         System.out.print("Введите число c: ");
         c = s.nextInt();
-        //min = (a > b) ? b : (a > c) ? c : a; // try 100, -100, -200
         min = a;
         min = (b < min) ? b : min;
         min = (c < min) ? c : min;
