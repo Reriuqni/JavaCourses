@@ -21,10 +21,10 @@ public class Array15 {
         for (int j = 1; j < a.length; j += 2) {
             System.out.print(a[j] + " ");
         }
+
         for (int j = a.length - 2; j >= 0; j -= 2) {
             System.out.print(a[j] + " ");
         }
-        System.out.println("\n------------------------------");
 
     }
 }

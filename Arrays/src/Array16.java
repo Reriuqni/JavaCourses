@@ -19,7 +19,6 @@ public class Array16 {
         for (int j = 0; j < a.length / 2; j++) {
             System.out.print(a[j] + " " + a[a.length - 1 - j] + " ");
         }
-        System.out.println("\n------------------------------");
 
     }
 }

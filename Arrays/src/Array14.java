@@ -22,10 +22,12 @@ public class Array14 {
         for (int j = 0; j < a.length; j += 2) {
             System.out.print(a[j] + " ");
         }
+
         System.out.print("\n");
+
         for (int j = 1; j < a.length; j += 2) {
             System.out.print(a[j] + " ");
         }
-        System.out.println("\n------------------------------");
+
     }
 }

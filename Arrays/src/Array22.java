@@ -10,6 +10,7 @@ public class Array22 {
                 "чительно.");
 
         Scanner s = new Scanner(System.in);
+
         System.out.print("Введите К: ");
         int k = s.nextInt();
         System.out.print("Введите L: ");
@@ -35,7 +36,6 @@ public class Array22 {
         } else {
             System.out.println("Неверные значения K,L");
         }
-        System.out.println("\n------------------------------");
 
     }
 }

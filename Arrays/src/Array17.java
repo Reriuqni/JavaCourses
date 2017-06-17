@@ -20,7 +20,6 @@ public class Array17 {
             System.out.print(a[j] + " " + a[j + 1] + " ");
             System.out.print(a[a.length - 1 - j] + " " + a[a.length - 2 - j] + " ");
         }
-        System.out.println("\n------------------------------");
 
     }
 }

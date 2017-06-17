@@ -29,6 +29,6 @@ public class Array11 {
         } else {
             System.out.println("Неверное значение K");
         }
-        System.out.println("\n------------------------------");
+
     }
 }

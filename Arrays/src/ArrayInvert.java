@@ -13,9 +13,8 @@ public class ArrayInvert {
 
         System.out.println(Arrays.toString(a));
 
-        int t;
         for (i = 0; i < a.length / 2; i++) {
-            t = a[a.length - 1 - i];
+            int t = a[a.length - 1 - i];
             a[a.length - 1 - i] = a[i];
             a[i] = t;
         }

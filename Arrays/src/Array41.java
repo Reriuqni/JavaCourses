@@ -16,12 +16,12 @@ public class Array41 {
 
         System.out.println(Arrays.toString(a));
 
-        int maxsum = a[0] + a[1];
+        int sum = a[0] + a[1];
         int index = 0;
 
         for (int j = 1; j < a.length - 1; j++) {
-            if (maxsum < a[j] + a[j + 1]) {
-                maxsum = a[j] + a[j + 1];
+            if (sum < a[j] + a[j + 1]) {
+                sum = a[j] + a[j + 1];
                 index = j;
             }
         }

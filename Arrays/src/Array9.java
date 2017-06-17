@@ -25,6 +25,6 @@ public class Array9 {
             }
         }
         System.out.println("\nK=" + k);
-        System.out.println("\n------------------------------");
+
     }
 }

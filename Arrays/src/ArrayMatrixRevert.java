@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class ArrayMatrixRevert {
 
-    public static void PrintMatrix(int a[][]) {
+    private static void PrintMatrix(int a[][]) {
 
         for (int i[] : a) {
             for (int j : i) {

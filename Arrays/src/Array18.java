@@ -28,10 +28,10 @@ public class Array18 {
                 break;
             }
         }
+
         if (!iselement) {
             System.out.println("Элементов нет.");
         }
-        System.out.println("\n------------------------------");
 
     }
 }

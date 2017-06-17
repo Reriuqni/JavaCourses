@@ -26,10 +26,10 @@ public class Array19 {
                 break;
             }
         }
+
         if (!iselement) {
             System.out.println("Элементов нет.");
         }
-        System.out.println("\n------------------------------");
 
     }
 }
