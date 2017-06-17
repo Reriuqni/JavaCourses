@@ -13,6 +13,7 @@ public class Array21 {
 
         System.out.print("Введите К: ");
         int k = s.nextInt();
+
         System.out.print("Введите L: ");
         int l = s.nextInt();
 

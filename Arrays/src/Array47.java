@@ -17,11 +17,13 @@ public class Array47 {
         System.out.println(Arrays.toString(a));
 
         int c = a.length;
+
         for (int j = 0; j < a.length; j++) {
             for (int k = j + 1; k < a.length; k++) {
                 if (a[j] == a[k]) c--;
             }
         }
+
         System.out.println("Кол-во элементов: " + c);
 
     }

@@ -18,12 +18,14 @@ public class Array9 {
         System.out.println(Arrays.toString(b));
 
         int k = 0;
+
         for (i = b.length - 1; i > 0; i--) {
             if (b[i] % 2 == 0) {
                 System.out.print(b[i] + " ");
                 k++;
             }
         }
+
         System.out.println("\nK=" + k);
 
     }

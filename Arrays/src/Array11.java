@@ -10,6 +10,7 @@ public class Array11 {
                 "Условный оператор не использовать. ");
 
         Scanner s = new Scanner(System.in);
+
         System.out.print("Введите К: ");
         int k = s.nextInt();
 

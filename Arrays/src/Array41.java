@@ -25,6 +25,7 @@ public class Array41 {
                 index = j;
             }
         }
+
         System.out.println(a[index] + " " + a[index+1]);
 
     }
