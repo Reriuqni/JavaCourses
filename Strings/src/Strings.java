@@ -42,7 +42,7 @@ public class Strings {
 
         System.out.println(s.charAt(3));
 
-        System.out.println("indexOf "+s.indexOf('o'));
+        System.out.println("indexOf " + s.indexOf('o'));
 
         s = s.concat(" how old are you?");
 
@@ -54,13 +54,34 @@ public class Strings {
 
         char[] c = s.toCharArray();
 
-        for (char x: c) System.out.print(x);
+        for (char x : c) System.out.print(x);
 
         System.out.println("\n");
 
         System.out.println(String.format("%s-%s", s, "kuku"));
 
         System.out.println(s.compareTo("Hello"));
+
+        String s1 = "java";
+        String s2 = new String("java");
+        String s3 = "java";
+        String s4 = new String("java");
+
+        s2 = s2.intern(); //
+
+        System.out.println(s1 == s3);
+        System.out.println(s1 == s2);
+        System.out.println(s1.equals(s4));
+
+        StringBuilder as = new StringBuilder("java");
+        StringBuffer ass = new StringBuffer("java");
+
+        System.out.println(as);
+
+        while (true) {
+            as = as.append(as);
+        }
+
     }
 
 }
