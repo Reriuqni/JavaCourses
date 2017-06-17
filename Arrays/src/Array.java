@@ -397,8 +397,82 @@ public class Array {
         }
 
         {
-            // 24
-            // TODO: just do it!
+            // 31
+            System.out.println("31. Дан массив размера N. Найти номера тех элементов массива, которые\n" +
+                    "больше своего левого соседа, и количество таких элементов. Найденные\n" +
+                    "номера выводить в порядке их убывания.");
+
+            int[] a = new int[10];
+
+            int i = 0;
+            while (i <= a.length - 1) {
+                a[i] = ++i;
+            }
+
+            a[3] = 2;
+
+            PrintArray(a);
+
+            int c = 0;
+            for (int j = a.length - 1; j > 0; j--) {
+                if (a[j] > a[j - 1]) {
+                    System.out.print((j + 1) + " ");
+                    c++;
+                }
+            }
+            System.out.println("\nКол-во элементов: " + c);
+            System.out.println("\n------------------------------");
+        }
+
+        {
+            // 41
+            System.out.println("41. Дан массив размера N. Найти два соседних элемента, сумма которых\n" +
+                    "максимальна, и вывести эти элементы в порядке возрастания их индексов.");
+
+            int[] a = new int[10];
+
+            int i = 0;
+            while (i <= a.length - 1) {
+                a[i] = ++i;
+            }
+
+            PrintArray(a);
+
+            int maxsum = a[0] + a[1];
+            int index = 0;
+
+            for (int j = 1; j < a.length - 1; j++) {
+                if (maxsum < a[j] + a[j + 1]) {
+                    maxsum = a[j] + a[j + 1];
+                    index = j;
+                }
+            }
+            System.out.println(a[index] + " " + a[index+1]);
+            System.out.println("------------------------------");
+        }
+
+        {
+            // 47
+            System.out.println("47. Дан целочисленный массив размера N. Найти количество различных\n" +
+                    "элементов в данном массиве.");
+
+            int[] a = new int[10];
+
+            int i = 0;
+            while (i <= a.length - 1) {
+                a[i] = ++i;
+            }
+
+            PrintArray(a);
+
+            int c = a.length;
+            for (int j = 0; j < a.length; j++) {
+                for (int k = j + 1; k < a.length; k++) {
+                    if (a[j] == a[k]) c--;
+                }
+            }
+            System.out.println("Кол-во элементов: " + c);
+            System.out.println("\n------------------------------");
         }
     }
 }
