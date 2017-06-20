@@ -6,31 +6,15 @@ public class Boolean1 {
 
         Scanner s = new Scanner(System.in);
 
-        System.out.println("29. Дано целое число. Вывести его строку-описание вида «отрицательное чет-\n" +
-                "ное число», «нулевое число», «положительное нечетное число» и т. д.");
+        System.out.println("1. Дано целое число A. Проверить истинность высказывания: «Число\n" +
+                "A является положительным».");
 
-        System.out.print("Введите число: ");
-        int x = s.nextInt();
+        System.out.print("Введите число a: ");
+        int a = s.nextInt();
 
-        if (x < 0) {
-            if (Math.abs(x) % 2 == 0) {
-                System.out.println("Отрицательное четное число");
-            } else {
-                System.out.println("Отрицательное нечетное число");
-            }
-        }
+        boolean result = (a > 0);
 
-        if (x == 0) {
-            System.out.println("Нулевое число");
-        }
-
-        if (x > 0) {
-            if (x % 2 == 0) {
-                System.out.println("Положительное четное число");
-            } else {
-                System.out.println("Положительное нечетное число");
-            }
-        }
+        System.out.println(result);
 
     }
 }
