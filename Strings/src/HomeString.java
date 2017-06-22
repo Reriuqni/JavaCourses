@@ -1,30 +1,38 @@
 public class HomeString {
 
-    public static void main(String[] args) {
+    private static int[] numbers = new int[10];
 
-        String s = "1  sf25gj   f-10456    jklm123";
-
-        // 1 + 25 + 10456 + 123
-
-        // 0 = U+0030
-        // 9 = U+0039
-        System.out.println("\u0030");
-        System.out.println("\u0039");
-
-        char[] cb = s.toCharArray();
-
-        char[] sym = new int[10];
-        for (int i = 0; i < sym.length; i++) {
-            sym[i] = (char)"\u003"+i;
-        }
-
-        for (int i = 0; i < s.length(); i++) {
-            System.out.print(cb[i]);
-            for (:
-                 ) {
-
-            }
-        }
+    private static void setNumbers() {
+        for (int i = 0; i < numbers.length; i++) numbers[i] = i + 48; //ascii codes
     }
 
+    private static boolean isDigit(char c) {
+        for (int n : numbers) {
+            if ((int) c == n) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+
+        setNumbers();
+
+        String str = "1  sf25gj   f-10456    jklm123";
+
+        int number = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            if (isDigit(str.charAt(i))) {
+                int j = i;
+                while (j != str.length() && isDigit(str.charAt(j))) j++;
+                number += Integer.parseInt(str.substring(i, j));
+                i = j;
+            }
+        }
+
+        System.out.println("Сумма чисел: "+number);
+
+    }
 }
