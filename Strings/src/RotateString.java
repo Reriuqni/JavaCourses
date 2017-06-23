@@ -22,7 +22,6 @@ public class RotateString {
 
     public static void main(String[] args) {
 
-        String prefix, suffix;
         Scanner s = new Scanner(System.in);
 
         System.out.print("Enter amount of tests: ");
@@ -38,11 +37,14 @@ public class RotateString {
             for (int i = 0; i < amount; i++) {
 
                 int spaceIndex = inputText[i].indexOf(" ");
+
                 int shift = Integer.parseInt(inputText[i].substring(0, spaceIndex));
 
                 inputText[i] = inputText[i].substring(spaceIndex + 1, inputText[i].length());
 
                 if (Math.abs(shift) <= inputText[i].length() / 2) {
+
+                    String prefix, suffix;
 
                     if (shift > 0) {
                         prefix = inputText[i].substring(shift, inputText[i].length());
