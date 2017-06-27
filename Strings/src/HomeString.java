@@ -10,7 +10,7 @@ public class HomeString {
             if (Character.isDigit(str.charAt(i))) {
                 int j = i;
                 while (j != str.length() && Character.isDigit(str.charAt(j))) j++;
-                sum += Integer.parseInt(str.substring(i, j));
+                sum += Integer.valueOf(str.substring(i, j));
                 i = j;
             }
         }
