@@ -1,6 +1,4 @@
-import java.util.Arrays;
-
-public class Test8 {
+public class Test9 {
 
     public static void main(String[] args) {
 
@@ -15,21 +13,7 @@ public class Test8 {
 
         for (int i = 0; i < text.length(); i++) symbols[text.charAt(i)]++;
 
-        int[] copy = Arrays.copyOf(symbols, symbols.length);
-
-        for (int sym : symbols) {
-            if (sym > 0) {
-                int value = symbols[0], index = 0;
-                for (int j = 0; j < copy.length; j++) {
-                    if (value < copy[j]) {
-                        value = copy[j];
-                        index = j;
-                    }
-                }
-                System.out.printf("%c - %d\n", index, copy[index]);
-                copy[index] = 0;
-            }
-        }
+        for (int i = 0; i < symbols.length; i++) if (symbols[i] > 0) System.out.printf("%c - %d\n", i, symbols[i]);
 
     }
 }
