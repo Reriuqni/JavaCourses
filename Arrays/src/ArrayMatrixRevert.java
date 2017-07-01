@@ -3,11 +3,11 @@ import java.util.Scanner;
 
 public class ArrayMatrixRevert {
 
-    private static void PrintMatrix(int a[][]) {
+    private static void PrintMatrix(int[][] a) {
 
         for (int i[] : a) {
-            for (int j : i) {
-                System.out.printf("%4d", j);
+            for (int value : i) {
+                System.out.printf("%4d", value);
             }
             System.out.printf("\n");
         }
