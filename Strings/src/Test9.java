@@ -1,19 +1,46 @@
+/*
+ Anagramms
+ */
+
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Test9 {
+
+    private static String[] vocabulary = {"bat", "tab", "coal", "cola", "lots", "slot", "lost", "tea", "ate", "eat"};
 
     public static void main(String[] args) {
 
-        String text = "Input data contain number of test-cases in the first line." +
-                "Then the specified number of lines follows each representing one test-case." +
-                "Lines consist only of lowercase English (Latin) letters and spaces." +
-                "Answer should contain the number of vowels in each line, separated by spaces.";
+        Scanner s = new Scanner(System.in);
 
-        text = text.toLowerCase();
+        System.out.print("Enter amount of tests: ");
 
-        int[] symbols = new int[128];
+        int amount = Integer.parseInt(s.nextLine());
 
-        for (int i = 0; i < text.length(); i++) symbols[text.charAt(i)]++;
+        if (amount > 0) {
 
-        for (int i = 0; i < symbols.length; i++) if (symbols[i] > 0) System.out.printf("%c - %d\n", i, symbols[i]);
+            String[] inputText = new String[amount];
 
+            for (int i = 0; i < amount; i++) inputText[i] = s.nextLine().toLowerCase();
+
+            for (String word : inputText) {
+
+                int sum = 0;
+
+                char[] charWord = word.toCharArray();
+                Arrays.sort(charWord);
+                String newWord = new String(charWord);
+
+                for (String oldWord : vocabulary) {
+                    char[] oldCharWord = oldWord.toCharArray();
+                    Arrays.sort(oldCharWord);
+                    if (!oldWord.equals(word) && newWord.equals(new String(oldCharWord))) {
+                        sum++;
+                    }
+                }
+
+                System.out.println("Count: " + sum);
+            }
+        } else System.out.println("Wrong number!");
     }
 }
