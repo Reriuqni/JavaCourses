@@ -1,4 +1,4 @@
-/*
+/**
  My colleague have retold me this puzzle after visiting an interview at local office of Oracle company.
  I hope I remember it correctly.
 
@@ -26,5 +26,32 @@
  3 9
  */
 
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Printers {
+
+    public static void main(String[] args) {
+
+        Scanner s = new Scanner(System.in);
+
+        System.out.print("Enter amount of tests: ");
+
+        int amount = Integer.parseInt(s.nextLine());
+
+        if (amount > 0) {
+
+            String[] inputText = new String[amount];
+
+            for (int i = 0; i < amount; i++) inputText[i] = s.nextLine();
+
+            System.out.println(Arrays.toString(inputText));
+            
+            for (String line: inputText) {
+                String[] parameters = line.split(" ");
+
+                System.out.println(Arrays.toString(parameters));
+            }
+        }
+    }
 }

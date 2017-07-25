@@ -26,10 +26,9 @@ public class Test8 {
                         index = j;
                     }
                 }
-                System.out.printf("%c - %d\n", index, copy[index]);
                 copy[index] = 0;
+                System.out.printf("%c - %d\n", index, value);
             }
         }
-
     }
 }

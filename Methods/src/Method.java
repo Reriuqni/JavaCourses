@@ -64,7 +64,8 @@ public class Method {
     }
 
     private static long factorial(long f) {
-        return (f == 1) ? 1 : f * factorial(f - 1);
+        if (f < 0) throw new IllegalArgumentException("Argument cannot be less than 0.");
+        return (f <= 1) ? 1 : f * factorial(f - 1);
     }
 
     public static void main(String[] args) {
@@ -91,6 +92,8 @@ public class Method {
         System.out.println(megacalc(new String[]{"+", "-", "*", "/"}, new double[]{5, 4, 3, 2, 1}));
 
         System.out.println(factorial(5));
+        System.out.println(factorial(0));
+        // System.out.println(factorial(-1));
 
         long d = 123456789;
         long e = revertNumber(d);
