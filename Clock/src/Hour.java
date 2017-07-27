@@ -2,7 +2,7 @@
  * Subclass of Minute
  */
 
-public class Hour extends Second {
+public class Hour extends Minute {
 
     Hour() {
     }
