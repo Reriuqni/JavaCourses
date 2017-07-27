@@ -46,7 +46,7 @@ public class Printers {
             for (int i = 0; i < amount; i++) inputText[i] = s.nextLine();
 
             System.out.println(Arrays.toString(inputText));
-            
+
             for (String line: inputText) {
                 String[] parameters = line.split(" ");
 
