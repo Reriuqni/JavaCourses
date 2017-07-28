@@ -28,16 +28,13 @@ public class Clock {
     }
 
     /**
-     * public String getTime()
-     * method returns time as String
+     * @return time as String
      */
     public String getTime() {
         return hour.getTime() + ":" + minute.getTime() + ":" + second.getTime();
     }
 
     /**
-     * public void setTime(int hour, int minute, int second)
-     *
      * @param hour   must be in 0..23 range
      * @param minute must be in 0..59 range
      * @param second must be in 0..59 range
@@ -49,51 +46,43 @@ public class Clock {
     }
 
     /**
-     * public void addSecond(int second)
-     *
-     * @param second can be any int value even negative
+     * @param second can be any int value, even negative
      */
     public void addSecond(int second) {
         addTime(0, 0, second);
     }
 
     /**
-     * public void addMinute(int minute)
-     *
-     * @param minute can be any int value even negative
+     * @param minute can be any int value, even negative
      */
     public void addMinute(int minute) {
         addTime(0, minute, 0);
     }
 
     /**
-     * public void addHour(int hour)
-     *
-     * @param hour can be any int value even negative
+     * @param hour can be any int value, even negative
      */
     public void addHour(int hour) {
         addTime(hour, 0, 0);
     }
 
     /**
-     * public void addTime(int hour, int minute, int second)
-     *
-     * @param hour   can be any int value even negative
-     * @param minute can be any int value even negative
-     * @param second can be any int value even negative
+     * @param hour   can be any int value, even negative
+     * @param minute can be any int value, even negative
+     * @param second can be any int value, even negative
      */
     public void addTime(int hour, int minute, int second) {
 
-        // represent time and its shift in seconds
+        // timeInSeconds represent time and its shift in seconds
         int timeInSeconds = (this.hour.getTime() + hour) * SECONDS_IN_HOUR;
         timeInSeconds += (this.minute.getTime() + minute) * SECONDS_IN_MINUTE;
         timeInSeconds += (this.second.getTime() + second);
         timeInSeconds %= SECONDS_IN_DAY;
 
         // if negative, revert it
-        if (timeInSeconds < 0) timeInSeconds = SECONDS_IN_DAY + timeInSeconds;
+        if (timeInSeconds < 0) timeInSeconds += SECONDS_IN_DAY;
 
-        // compute a new values of time
+        // computing new values of time
         int newHour = timeInSeconds / SECONDS_IN_HOUR;
         int newMinute = timeInSeconds / SECONDS_IN_MINUTE - newHour * MINUTES_IN_HOUR;
         int newSecond = timeInSeconds - newHour * SECONDS_IN_HOUR - newMinute * SECONDS_IN_MINUTE;
@@ -102,7 +91,6 @@ public class Clock {
     }
 
     /**
-     * public String toString()
      * method overrides Object.toString() method to represent our class name and info
      */
     @Override

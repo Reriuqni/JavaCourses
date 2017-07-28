@@ -16,10 +16,9 @@ public class Second {
     }
 
     /**
-     * public void setTime(int time)
+     * method is overriden in Hour class
      *
      * @param time must be in 0..59 range
-     *             method is overrided in Hour class
      */
     public void setTime(int time) {
         checkArguments(time < 0 || time > 59, " must be in range 0..59");
@@ -27,19 +26,17 @@ public class Second {
     }
 
     /**
-     * public int getTime()
-     * method returns time as int
+     * @return time as int
      */
     public int getTime() {
         return time;
     }
 
     /**
-     * protected void checkArguments(boolean condition, String message)
+     * method throws an exception with message if condition is true
      *
      * @param condition is boolean value
      * @param message   is String value
-     *                  method throws an exception with message if condition is true
      */
     protected void checkArguments(boolean condition, String message) {
         if (condition) {
@@ -48,7 +45,6 @@ public class Second {
     }
 
     /**
-     * public String toString()
      * method overrides Object.toString() method to represent our class name and info
      */
     @Override
