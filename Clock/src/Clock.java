@@ -37,19 +37,48 @@ public class Clock {
 
     /**
      * public void setTime(int hour, int minute, int second)
-     * @param hour must be in 0..23 range
+     *
+     * @param hour   must be in 0..23 range
      * @param minute must be in 0..59 range
      * @param second must be in 0..59 range
      */
-     public void setTime(int hour, int minute, int second) {
+    public void setTime(int hour, int minute, int second) {
         this.hour.setTime(hour);
         this.minute.setTime(minute);
         this.second.setTime(second);
     }
 
     /**
-     * public void addTime(int hour, int minute, int second)
+     * public void addSecond(int second)
+     *
+     * @param second can be any int value even negative
+     */
+    public void addSecond(int second) {
+        addTime(0, 0, second);
+    }
+
+    /**
+     * public void addMinute(int minute)
+     *
+     * @param minute can be any int value even negative
+     */
+    public void addMinute(int minute) {
+        addTime(0, minute, 0);
+    }
+
+    /**
+     * public void addHour(int hour)
+     *
      * @param hour can be any int value even negative
+     */
+    public void addHour(int hour) {
+        addTime(hour, 0, 0);
+    }
+
+    /**
+     * public void addTime(int hour, int minute, int second)
+     *
+     * @param hour   can be any int value even negative
      * @param minute can be any int value even negative
      * @param second can be any int value even negative
      */
@@ -70,30 +99,6 @@ public class Clock {
         int newSecond = timeInSeconds - newHour * SECONDS_IN_HOUR - newMinute * SECONDS_IN_MINUTE;
 
         setTime(newHour, newMinute, newSecond);
-    }
-
-    /**
-     * public void addSecond(int second)
-     * @param second can be any int value even negative
-     */
-    public void addSecond(int second) {
-        addTime(0, 0, second);
-    }
-
-    /**
-     * public void addMinute(int minute)
-     * @param minute can be any int value even negative
-     */
-    public void addMinute(int minute) {
-        addTime(0, minute, 0);
-    }
-
-    /**
-     * public void addHour(int hour)
-     * @param hour can be any int value even negative
-     */
-    public void addHour(int hour) {
-        addTime(hour, 0, 0);
     }
 
     /**
