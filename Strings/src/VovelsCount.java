@@ -1,4 +1,4 @@
-/*
+/**
  * Input data contain number of test-cases in the first line.
  * Then the specified number of lines follows each representing one test-case.
  * Lines consist only of lowercase English (Latin) letters and spaces.

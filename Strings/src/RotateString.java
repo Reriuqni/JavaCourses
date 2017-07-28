@@ -1,4 +1,4 @@
-/*
+/**
  * To rotate string by K characters means to cut these characters from the beginning and transfer them to the end.
  * If K is negative, characters, on contrary should be transferred from the end to the beginning.
  *

@@ -1,5 +1,7 @@
-/*
- Anagramms
+/**
+ * Anagramms
+ *
+ * @author cortisol
  */
 
 import java.util.Arrays;
