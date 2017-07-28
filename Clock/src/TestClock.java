@@ -1,5 +1,7 @@
 /**
- * Example of OOP
+ * Testing Clock class
+ *
+ * @author cortisol
  */
 
 public class TestClock {
@@ -69,6 +71,19 @@ public class TestClock {
 
         c.addTime(-12,59,59);
         System.out.println(c);
+
+        c.addSecond(30);
+        System.out.println(c); 
+
+        c.addMinute(30);
+        System.out.println(c); 
+
+        c.addHour(1);
+        System.out.println(c); 
+
+        c.addHour(-2);
+        System.out.println(c); 
+
 
     }
 }
