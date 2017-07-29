@@ -16,9 +16,7 @@ public class Clock {
     private Second second;
 
     Clock() {
-        hour = new Hour();
-        minute = new Minute();
-        second = new Second();
+        this(0,0,0);
     }
 
     Clock(int hour, int minute, int second) {
@@ -91,7 +89,9 @@ public class Clock {
     }
 
     /**
-     * method overrides Object.toString() method to represent our class name and info
+     * method overrides Object.toString()
+     *
+     * @return String representation of our class and its info
      */
     @Override
     public String toString() {

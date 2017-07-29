@@ -16,7 +16,7 @@ public class Second {
     }
 
     /**
-     * method is overriden in Hour class
+     * method is overrided in Hour class
      *
      * @param time must be in 0..59 range
      */
@@ -45,7 +45,9 @@ public class Second {
     }
 
     /**
-     * method overrides Object.toString() method to represent our class name and info
+     * method overrides Object.toString()
+     *
+     * @return String representation of our class and its info
      */
     @Override
     public String toString() {
