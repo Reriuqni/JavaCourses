@@ -1,5 +1,5 @@
 /**
- * Minute class is subclass of Second class
+ * Minute class
  *
  * @author cortisol
  */
@@ -7,7 +7,7 @@
 public class Minute extends Second {
 
     Minute() {
-        super(0);
+        super();
     }
 
     Minute(int time) {

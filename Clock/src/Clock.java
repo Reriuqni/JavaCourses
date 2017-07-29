@@ -6,17 +6,23 @@
 
 public class Clock {
 
-    public static final int SECONDS_IN_HOUR = 3600;
-    public static final int SECONDS_IN_MINUTE = 60;
-    public static final int SECONDS_IN_DAY = 86400;
-    public static final int MINUTES_IN_HOUR = 60;
+    /**
+     * Static onstants
+     */
+    static final int SECONDS_IN_HOUR = 3600;
+    static final int SECONDS_IN_MINUTE = 60;
+    static final int SECONDS_IN_DAY = 86400;
+    static final int MINUTES_IN_HOUR = 60;
 
+    /**
+     * Class fields
+     */
     private Hour hour;
     private Minute minute;
     private Second second;
 
     Clock() {
-        this(0,0,0);
+        this(0, 0, 0);
     }
 
     Clock(int hour, int minute, int second) {
@@ -89,8 +95,6 @@ public class Clock {
     }
 
     /**
-     * method overrides Object.toString()
-     *
      * @return String representation of our class and its info
      */
     @Override
