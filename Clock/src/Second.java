@@ -9,7 +9,7 @@ public class Second {
     /**
      * Class fields
      */
-    protected int time;
+    private int time;
 
     Second() {
         this(0);
