@@ -6,6 +6,9 @@
 
 public class Second {
 
+    /**
+     * Class fields
+     */
     protected int time;
 
     Second() {
@@ -17,10 +20,10 @@ public class Second {
     }
 
     /**
-     * @param time must be in 0..59 range
+     * @param time must be in 0..Constants.SECONDS_IN_MINUTE-1 range
      */
     public void setTime(int time) {
-        checkArguments(time < 0 || time > 59, " must be in range 0..59");
+        checkArguments(time < 0 || time > Constants.SECONDS_IN_MINUTE - 1, " must be in range 0.." + (Constants.SECONDS_IN_MINUTE - 1));
         this.time = time;
     }
 

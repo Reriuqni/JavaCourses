@@ -7,14 +7,6 @@
 public class Clock {
 
     /**
-     * Static onstants
-     */
-    static final int SECONDS_IN_HOUR = 3600;
-    static final int SECONDS_IN_MINUTE = 60;
-    static final int SECONDS_IN_DAY = 86400;
-    static final int MINUTES_IN_HOUR = 60;
-
-    /**
      * Class fields
      */
     private Hour hour;
@@ -78,18 +70,18 @@ public class Clock {
     public void addTime(int hour, int minute, int second) {
 
         // timeInSeconds represent time and its shift in seconds
-        int timeInSeconds = (this.hour.getTime() + hour) * SECONDS_IN_HOUR;
-        timeInSeconds += (this.minute.getTime() + minute) * SECONDS_IN_MINUTE;
+        int timeInSeconds = (this.hour.getTime() + hour) * Constants.SECONDS_IN_HOUR;
+        timeInSeconds += (this.minute.getTime() + minute) * Constants.SECONDS_IN_MINUTE;
         timeInSeconds += (this.second.getTime() + second);
-        timeInSeconds %= SECONDS_IN_DAY;
+        timeInSeconds %= Constants.SECONDS_IN_DAY;
 
         // if negative, revert it
-        if (timeInSeconds < 0) timeInSeconds += SECONDS_IN_DAY;
+        if (timeInSeconds < 0) timeInSeconds += Constants.SECONDS_IN_DAY;
 
         // computing new values of time
-        int newHour = timeInSeconds / SECONDS_IN_HOUR;
-        int newMinute = timeInSeconds / SECONDS_IN_MINUTE - newHour * MINUTES_IN_HOUR;
-        int newSecond = timeInSeconds - newHour * SECONDS_IN_HOUR - newMinute * SECONDS_IN_MINUTE;
+        int newHour = timeInSeconds / Constants.SECONDS_IN_HOUR;
+        int newMinute = timeInSeconds / Constants.SECONDS_IN_MINUTE - newHour * Constants.MINUTES_IN_HOUR;
+        int newSecond = timeInSeconds - newHour * Constants.SECONDS_IN_HOUR - newMinute * Constants.SECONDS_IN_MINUTE;
 
         setTime(newHour, newMinute, newSecond);
     }
