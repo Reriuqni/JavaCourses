@@ -17,7 +17,6 @@ public class Hour extends Minute {
     /**
      * @param time must be in 0..Constants.HOURS_IN_DAY-1 range
      */
-    @Override
     public void setTime(int time) {
         checkArguments(time < 0 || time > Constants.HOURS_IN_DAY - 1, " must be in range 0.." + (Constants.HOURS_IN_DAY - 1));
         super.time = time;
