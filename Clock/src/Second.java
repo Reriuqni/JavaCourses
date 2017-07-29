@@ -9,6 +9,7 @@ public class Second {
     protected int time;
 
     Second() {
+        this(0);
     }
 
     Second(int time) {
@@ -37,6 +38,8 @@ public class Second {
      *
      * @param condition is boolean value
      * @param message   is String value
+     *
+     * @throws IllegalArgumetException
      */
     protected void checkArguments(boolean condition, String message) {
         if (condition) {

@@ -6,10 +6,10 @@
 
 public class Clock {
 
-    final int SECONDS_IN_HOUR = 3600;
-    final int SECONDS_IN_MINUTE = 60;
-    final int SECONDS_IN_DAY = 86400;
-    final int MINUTES_IN_HOUR = 60;
+    public static final int SECONDS_IN_HOUR = 3600;
+    public static final int SECONDS_IN_MINUTE = 60;
+    public static final int SECONDS_IN_DAY = 86400;
+    public static final int MINUTES_IN_HOUR = 60;
 
     private Hour hour;
     private Minute minute;

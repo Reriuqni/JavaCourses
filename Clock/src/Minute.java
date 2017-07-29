@@ -7,6 +7,7 @@
 public class Minute extends Second {
 
     Minute() {
+        super(0);
     }
 
     Minute(int time) {

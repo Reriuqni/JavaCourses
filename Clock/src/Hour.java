@@ -7,6 +7,7 @@
 public class Hour extends Minute {
 
     Hour() {
+        this(0);
     }
 
     Hour(int time) {
