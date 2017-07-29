@@ -28,8 +28,8 @@ public class Point3D extends Point2D {
 
     @Override
     public String toString() {
-        return "Point3D{" + "x=" + super.toString() +
+        return "Point3D{" +
                 "z=" + z +
-                '}';
+                "} " + super.toString();
     }
 }

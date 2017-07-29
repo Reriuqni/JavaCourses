@@ -13,6 +13,9 @@ public class Clock {
     private Minute minute;
     private Second second;
 
+    /**
+     * Constructors
+     */
     Clock() {
         this(0, 0, 0);
     }

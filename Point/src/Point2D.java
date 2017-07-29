@@ -24,7 +24,7 @@ public class Point2D extends Point {
     @Override
     public String toString() {
         return "Point2D{" +
-                "y=" + y + super.toString() +
-                '}';
+                "y=" + y +
+                "} " + super.toString();
     }
 }
