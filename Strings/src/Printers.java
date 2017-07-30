@@ -26,7 +26,6 @@
  * 3 9
  */
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Printers {
@@ -42,10 +41,12 @@ public class Printers {
         if (amount > 0) {
 
             String[] inputText = new String[amount];
+            String output = "";
 
             for (int i = 0; i < amount; i++) inputText[i] = s.nextLine();
 
             for (String line : inputText) {
+
                 String[] parameters = line.split(" ");
 
                 if (parameters.length < 3) throw new IllegalArgumentException("Lack of arguments");
@@ -54,15 +55,20 @@ public class Printers {
                 int y = Integer.parseInt(parameters[1]);
                 int n = Integer.parseInt(parameters[2]);
 
-                long time = computeTime(x, y, n);
-
-                System.out.println("Time:" + time);
+                output = output + computeTime(x, y, n) + " ";
             }
+            System.out.println(output);
         }
     }
 
-    public static long computeTime(int x, int y, int n) {
-        return (long) Math.round(x * y * (n - 1.0f) / (x + y)) + Math.min(x, y);
+    public static int computeTime(int x, int y, int n) {
+        int timex, timey, time;
+        time = timex = timey = 0;
+        while (timex + timey < n) {
+            time++;
+            timex = time / x;
+            timey = time / y;
+        }
+        return time;
     }
-
 }

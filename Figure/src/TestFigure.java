@@ -1,12 +1,10 @@
-import com.sun.javafx.font.directwrite.RECT;
-
 public class TestFigure {
     public static void main(String[] argv) {
 
         Rectangle rectangle = new Rectangle(40, 20);
         Square square = new Square(20);
 
- /*
+*
         System.out.println(rectangle.getPerimeter());
         System.out.println(rectangle.getSquare());
         System.out.println(square.getPerimeter());
@@ -19,7 +17,7 @@ public class TestFigure {
         Figure[] figures = {rectangle, square, circle};
         for (Figure figure: figures) {
             System.out.println(figure);
-        }*/
+        }
 
         Figure figure = rectangle;
 
