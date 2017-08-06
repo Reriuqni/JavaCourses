@@ -13,20 +13,38 @@ public class Record {
     private int importance;
     private String source;
     private String errorMessage;
-    private final int COUNT_OF_FIELDS = 4;
+
     /**
-     * @param date
-     * @param importance
-     * @param source
-     * @param errorMessage
+     * Block of constants
+     */
+    private final int COUNT_OF_FIELDS = 4;
+    private final String SEPARATOR = " ";
+
+    /**
+     * First constructor which gets parameters as separated values
+     *
+     * @param date         instance of Date class
+     * @param importance   integer value in 1..4 range
+     * @param source       String without spaces
+     * @param errorMessage String which can contain spaces
      */
     Record(Date date, int importance, String source, String errorMessage) {
         setParameters(date, importance, source, errorMessage);
     }
 
+    /**
+     * Second constructor which gets parameters as String value
+     *
+     * @param parametersAsString contains String as parameters "date importance source errorMessage"
+     *                           'date' instance of Date class
+     *                           'importance' integer value in 1..4 range
+     *                           'source' String without spaces
+     *                           'errorMessage' String which can contain spaces
+     */
     Record(String parametersAsString) {
-        // parse all the arguments into array of objects
+        // get all the arguments as array of objects
         Object[] parameters = parseParameters(parametersAsString);
+        // and separate them into the
         Date date = (Date) parameters[0];
         int importance = Integer.parseInt((String) parameters[1]);
         String source = (String) parameters[2];
@@ -36,13 +54,14 @@ public class Record {
     }
 
     /**
+     * Method checks and sets the fields into the values of arguments
      *
-     * @param date
-     * @param importance
-     * @param source
-     * @param errorMessage
+     * @param date         instance of Date class
+     * @param importance   integer value in 1..4 range
+     * @param source       String without spaces
+     * @param errorMessage String which can contain spaces
      */
-    public void setParameters(Date date, int importance, String source, String errorMessage) {
+    private void setParameters(Date date, int importance, String source, String errorMessage) {
         checkParameters(date, importance, source, errorMessage);
         this.date = date;
         this.importance = importance;
@@ -51,11 +70,13 @@ public class Record {
     }
 
     /**
+     * Method checks the values of arguments and throws an exception in case of error
      *
-     * @param date
-     * @param importance
-     * @param source
-     * @param errorMessage
+     * @param date         instance of Date class
+     * @param importance   integer value in 1..4 range
+     * @param source       String without spaces
+     * @param errorMessage String which can contain spaces
+     * @throws IllegalArgumentException in case of inappropriate values of arguments
      */
     private void checkParameters(Date date, int importance, String source, String errorMessage) {
         if (date == null) {
@@ -66,33 +87,67 @@ public class Record {
         }
         if (source == null || source.equals("")) {
             throw new IllegalArgumentException("Source cannot be empty!");
-        } else {
-            // TODO: normalize string
         }
         if (errorMessage == null || errorMessage.equals("")) {
-            throw new IllegalArgumentException("Source cannot be empty!");
-        } else {
-            // TODO: normalize string
+            throw new IllegalArgumentException("Error message cannot be empty!");
         }
     }
 
     /**
+     * Method parses the String into the array of Object
      *
-     * @param parametersAsString
-     * @return
+     * @param parametersAsString contains String as parameters "111 2 aaa bbb_bbb"
+     * @return array of Objects (Date, Integer, String, String)
      */
     private Object[] parseParameters(String parametersAsString) {
-        String[] parametersArray = parametersAsString.split(" ");
-        if (parametersArray.length != COUNT_OF_FIELDS) {
-            throw new IllegalArgumentException("Wrong arguments!");
+        String[] parametersArray = parametersAsString.split(SEPARATOR);
+        if (parametersArray.length < COUNT_OF_FIELDS) {
+            throw new IllegalArgumentException("Too few arguments!");
         }
-        Object[] params = new Object[parametersArray.length];
+        // create an array of Object class
+        Object[] objParameters = new Object[COUNT_OF_FIELDS];
+        // the first parameter is the instance of Date class
         Date tempDate = new Date();
         tempDate.setTime(Integer.parseInt(parametersArray[1]));
-        params[0] = tempDate;
-        for (int i = 1; i < COUNT_OF_FIELDS; i++) {
-            params[i] = parametersArray[i];
+        objParameters[0] = tempDate.toString();
+        // second and others - Integer and 2 String objects, where 3-th parameter cannot contain ' '
+        for (int i = 1; i < COUNT_OF_FIELDS; i++) objParameters[i] = parametersArray[i];
+        // if 'errorMessage' contains ' ', add the remained words to the 4-th parameter
+        if (parametersArray.length > COUNT_OF_FIELDS) {
+            int c = parametersArray.length - COUNT_OF_FIELDS;
+            while (c > 0) {
+                objParameters[3] += SEPARATOR + parametersArray[parametersArray.length - c];
+                c--;
+            }
         }
-        return params;
+        return objParameters;
+    }
+
+    /**
+     * @return String representation of importance field
+     */
+    private String importanceToString() {
+        switch (importance) {
+            case 1:
+                return ".    ";
+            case 2:
+                return "!    ";
+            case 3:
+                return "!!!  ";
+            case 4:
+                return "!!!!!";
+            default:
+                throw new IllegalArgumentException("Wrong arguments!");
+        }
+    }
+
+    /**
+     * Overrides toString() method for proper representation of our Object
+     *
+     * @return String representation
+     */
+    @Override
+    public String toString() {
+        return date.toString() + SEPARATOR + importanceToString() + SEPARATOR + source + SEPARATOR + errorMessage;
     }
 }
