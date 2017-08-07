@@ -1,8 +1,8 @@
-import java.util.Date;
-
 /**
  * @author cortisol
  */
+
+import java.util.Date;
 
 public class TestJournal {
 
