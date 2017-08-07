@@ -123,15 +123,15 @@ public class Record {
     private Object[] parseParameters(String parametersAsString) {
         // split the whole string
         String[] strParameters = parametersAsString.split(SEPARATOR);
-        // create a new string with no spaces between first 4 params
         StringBuilder sb = new StringBuilder();
         int c = 0;
         for (String str : strParameters) {
-            if (!str.isEmpty() && !str.equals(SEPARATOR) && c < (COUNT_OF_FIELDS + 1)) {
+            // ignore the empty strings,string which consists of space or CRLF
+            if (!str.isEmpty() && !str.equals(SEPARATOR) && !str.contains("\n") && c < COUNT_OF_FIELDS) {
                 sb.append(str);
                 sb.append(SEPARATOR);
                 c++;
-            } else if (c >= (COUNT_OF_FIELDS + 1)) {
+            } else if (c >= COUNT_OF_FIELDS) {
                 //starting from this index we don't care about spaces
                 if (!str.contains("\n")) {
                     sb.append(str);

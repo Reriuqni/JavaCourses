@@ -19,7 +19,7 @@ public class TestJournal {
         Record c = new Record("2014-01-01 23:01:59 3 ruku bbb");
         System.out.println(c);
 
-        Record d = new Record("2014-01-01 23:01:59 3 ruku a");
+        Record d = new Record("2014-01-01 23:01:59 3 ruku avvvvv\n\n\nvvv");
         System.out.println(d);
 
     }
