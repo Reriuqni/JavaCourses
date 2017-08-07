@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -19,6 +20,9 @@ public class Record {
      */
     private final int COUNT_OF_FIELDS = 4;
     private final String SEPARATOR = " ";
+    private final String timePattern = "yyyy-MM-dd HH:mm:ss";
+    private final int IMPORTANCE_MIN_VALUE = 1;
+    private final int IMPORTANCE_MAX_VALUE = 4;
 
     /**
      * First constructor which gets parameters as separated values
@@ -28,7 +32,7 @@ public class Record {
      * @param source       String without spaces
      * @param errorMessage String which can contain spaces
      */
-    Record(Date date, int importance, String source, String errorMessage) {
+    public Record(Date date, int importance, String source, String errorMessage) {
         setParameters(date, importance, source, errorMessage);
     }
 
@@ -41,14 +45,14 @@ public class Record {
      *                           'source' String without spaces
      *                           'errorMessage' String which can contain spaces
      */
-    Record(String parametersAsString) {
+    public Record(String parametersAsString) {
         // get all the arguments as array of objects
-        Object[] parameters = parseParameters(parametersAsString);
+        Object[] objParameters = parseParameters(parametersAsString);
         // and separate them into the
-        Date date = (Date) parameters[0];
-        int importance = Integer.parseInt((String) parameters[1]);
-        String source = (String) parameters[2];
-        String errorMessage = (String) parameters[3];
+        Date date = (Date) objParameters[0];
+        int importance = Integer.parseInt((String) objParameters[1]);
+        String source = (String) objParameters[2];
+        String errorMessage = (String) objParameters[3];
         // set the parameters
         setParameters(date, importance, source, errorMessage);
     }
@@ -61,12 +65,12 @@ public class Record {
      * @param source       String without spaces
      * @param errorMessage String which can contain spaces
      */
-    private void setParameters(Date date, int importance, String source, String errorMessage) {
+    public void setParameters(Date date, int importance, String source, String errorMessage) {
         checkParameters(date, importance, source, errorMessage);
         this.date = date;
         this.importance = importance;
-        this.source = source;
-        this.errorMessage = errorMessage;
+        this.source = source.trim();
+        this.errorMessage = errorMessage.trim();
     }
 
     /**
@@ -79,18 +83,38 @@ public class Record {
      * @throws IllegalArgumentException in case of inappropriate values of arguments
      */
     private void checkParameters(Date date, int importance, String source, String errorMessage) {
-        if (date == null) {
+        if (checkDate(date)) {
             throw new IllegalArgumentException("Date cannot be null");
         }
-        if (importance < 1 || importance > 4) {
+        if (checkImportance(importance)) {
             throw new IllegalArgumentException("Importance must be in 1..4 range!");
         }
-        if (source == null || source.equals("")) {
+        if (checkSource(source)) {
             throw new IllegalArgumentException("Source cannot be empty!");
         }
-        if (errorMessage == null || errorMessage.equals("")) {
+        if (checkErrorMessage(errorMessage)) {
             throw new IllegalArgumentException("Error message cannot be empty!");
         }
+    }
+
+    /**
+     * Checkers
+     */
+
+    private boolean checkDate(Date date) {
+        return (date == null);
+    }
+
+    private boolean checkImportance(int importance) {
+        return (importance < IMPORTANCE_MIN_VALUE || importance > IMPORTANCE_MAX_VALUE);
+    }
+
+    private boolean checkSource(String source) {
+        return (source == null || source.trim().equals("") || source.trim().equals(SEPARATOR));
+    }
+
+    private boolean checkErrorMessage(String errorMessage) {
+        return (errorMessage == null || errorMessage.trim().equals("") || errorMessage.trim().equals(SEPARATOR));
     }
 
     /**
@@ -100,6 +124,7 @@ public class Record {
      * @return array of Objects (Date, Integer, String, String)
      */
     private Object[] parseParameters(String parametersAsString) {
+        //TODO: fix situation where string contains spaces between arguments
         String[] parametersArray = parametersAsString.split(SEPARATOR);
         if (parametersArray.length < COUNT_OF_FIELDS) {
             throw new IllegalArgumentException("Too few arguments!");
@@ -109,14 +134,14 @@ public class Record {
         // the first parameter is the instance of Date class
         Date tempDate = new Date();
         tempDate.setTime(Integer.parseInt(parametersArray[1]));
-        objParameters[0] = tempDate.toString();
+        objParameters[0] = tempDate;
         // second and others - Integer and 2 String objects, where 3-th parameter cannot contain ' '
         for (int i = 1; i < COUNT_OF_FIELDS; i++) objParameters[i] = parametersArray[i];
-        // if 'errorMessage' contains ' ', add the remained words to the 4-th parameter
+        // if 'errorMessage' contains ' ', add the remained words to the last parameter
         if (parametersArray.length > COUNT_OF_FIELDS) {
             int c = parametersArray.length - COUNT_OF_FIELDS;
             while (c > 0) {
-                objParameters[3] += SEPARATOR + parametersArray[parametersArray.length - c];
+                objParameters[COUNT_OF_FIELDS - 1] += (SEPARATOR + parametersArray[parametersArray.length - c]);
                 c--;
             }
         }
@@ -126,7 +151,7 @@ public class Record {
     /**
      * @return String representation of importance field
      */
-    private String importanceToString() {
+    private String getStatus(int importance) {
         switch (importance) {
             case 1:
                 return ".    ";
@@ -137,7 +162,7 @@ public class Record {
             case 4:
                 return "!!!!!";
             default:
-                throw new IllegalArgumentException("Wrong arguments!");
+                throw new IllegalArgumentException("Wrong argument!");
         }
     }
 
@@ -148,6 +173,9 @@ public class Record {
      */
     @Override
     public String toString() {
-        return date.toString() + SEPARATOR + importanceToString() + SEPARATOR + source + SEPARATOR + errorMessage;
+        return new SimpleDateFormat(timePattern).format(date) + SEPARATOR +
+                getStatus(importance) + SEPARATOR +
+                source + SEPARATOR +
+                errorMessage;
     }
 }
