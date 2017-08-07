@@ -133,7 +133,11 @@ public class Record {
                 c++;
             } else if (c >= (COUNT_OF_FIELDS + 1)) {
                 //starting from this index we don't care about spaces
-                sb.append(str);
+                if (!str.contains("\n")) {
+                    sb.append(str);
+                } else {
+                    sb.append(str.replace("\n", ""));
+                }
                 sb.append(SEPARATOR);
             }
         }
