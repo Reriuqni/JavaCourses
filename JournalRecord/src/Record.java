@@ -3,12 +3,14 @@
  */
 
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Record {
 
     /**
-     * Class fields
+     * Block of fields
      */
     private Date date;
     private int importance;
@@ -18,11 +20,11 @@ public class Record {
     /**
      * Block of constants
      */
-    private final int COUNT_OF_FIELDS = 4;
-    private final String SEPARATOR = " ";
-    private final String timePattern = "yyyy-MM-dd HH:mm:ss";
-    private final int IMPORTANCE_MIN_VALUE = 1;
-    private final int IMPORTANCE_MAX_VALUE = 4;
+    private static final int COUNT_OF_FIELDS = 4;
+    private static final String SEPARATOR = " ";
+    private static final String timePattern = "yyyy-MM-dd HH:mm:ss";
+    private static final int IMPORTANCE_MIN_VALUE = 1;
+    private static final int IMPORTANCE_MAX_VALUE = 4;
 
     /**
      * First constructor which gets parameters as separated values
@@ -100,7 +102,6 @@ public class Record {
     /**
      * Checkers
      */
-
     private boolean checkDate(Date date) {
         return (date == null);
     }
@@ -110,38 +111,51 @@ public class Record {
     }
 
     private boolean checkSource(String source) {
-        return (source == null || source.trim().equals("") || source.trim().equals(SEPARATOR));
+        return (source == null || source.trim().equals(""));
     }
 
     private boolean checkErrorMessage(String errorMessage) {
-        return (errorMessage == null || errorMessage.trim().equals("") || errorMessage.trim().equals(SEPARATOR));
+        return (errorMessage == null || errorMessage.trim().equals(""));
     }
 
     /**
-     * Method parses the String into the array of Object
+     * Method parses the String into the array of Objects
      *
      * @param parametersAsString contains String as parameters "111 2 aaa bbb_bbb"
      * @return array of Objects (Date, Integer, String, String)
      */
     private Object[] parseParameters(String parametersAsString) {
-        //TODO: fix situation where string contains spaces between arguments
-        String[] parametersArray = parametersAsString.split(SEPARATOR);
-        if (parametersArray.length < COUNT_OF_FIELDS) {
+        // split the whole string
+        String[] strParameters = parametersAsString.split(SEPARATOR);
+        // create a new string with no spaces between first 4 params
+        StringBuilder sb = new StringBuilder();
+        int c = 0;
+        for (String str : strParameters) {
+            if (!str.isEmpty() && !str.equals(SEPARATOR) && c < (COUNT_OF_FIELDS + 1)) {
+                sb.append(str);
+                sb.append(SEPARATOR);
+                c++;
+            } else if (c >= (COUNT_OF_FIELDS + 1)) {
+                //starting from this index we don't care about spaces
+                sb.append(str);
+                sb.append(SEPARATOR);
+            }
+        }
+        strParameters = sb.toString().split(SEPARATOR);
+        if (strParameters.length < (COUNT_OF_FIELDS + 1)) {
             throw new IllegalArgumentException("Too few arguments!");
         }
         // create an array of Object class
         Object[] objParameters = new Object[COUNT_OF_FIELDS];
         // the first parameter is the instance of Date class
-        Date tempDate = new Date();
-        tempDate.setTime(Integer.parseInt(parametersArray[1]));
-        objParameters[0] = tempDate;
+        objParameters[0] = parseDate(strParameters[0] + SEPARATOR + strParameters[1]);
         // second and others - Integer and 2 String objects, where 3-th parameter cannot contain ' '
-        for (int i = 1; i < COUNT_OF_FIELDS; i++) objParameters[i] = parametersArray[i];
+        for (int i = 1; i < COUNT_OF_FIELDS; i++) objParameters[i] = strParameters[i + 1];
         // if 'errorMessage' contains ' ', add the remained words to the last parameter
-        if (parametersArray.length > COUNT_OF_FIELDS) {
-            int c = parametersArray.length - COUNT_OF_FIELDS;
+        if (strParameters.length > (COUNT_OF_FIELDS + 1)) {
+            c = strParameters.length - (COUNT_OF_FIELDS + 1);
             while (c > 0) {
-                objParameters[COUNT_OF_FIELDS - 1] += (SEPARATOR + parametersArray[parametersArray.length - c]);
+                objParameters[3] += (SEPARATOR + strParameters[strParameters.length - c]);
                 c--;
             }
         }
@@ -162,7 +176,15 @@ public class Record {
             case 4:
                 return "!!!!!";
             default:
-                throw new IllegalArgumentException("Wrong argument!");
+                throw new IllegalArgumentException("Importance must be in 1..4 range!");
+        }
+    }
+
+    public Date parseDate(String strDate) {
+        try {
+            return new SimpleDateFormat(timePattern).parse(strDate);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Wrong date format!");
         }
     }
 

@@ -6,24 +6,21 @@ import java.util.Date;
 
 public class TestJournal {
 
-    public static void main (String[] args) {
+    public static void main(String[] args) {
 
         Date time = new Date();
         time.setTime(6747473);
-        Record a = new Record(time,1,"kuku","achtung"  );
+        Record a = new Record(time, 1, "kuku", "achtung");
         System.out.println(a);
 
-        Record b = new Record("2343242 2 kuku aaa_ffds_gddddfg");
-        Record c = new Record("123 3 kuku aaa ffds-gdd d  d f g ");
-        Record d = new Record("123 4 kuku aaa ffds-gdd d  d f g ");
+        Record b = new Record("2014-04-12       23:59:59       2 kuku     aaa    d fg dfg ffds_gddddfg");
         System.out.println(b);
 
+        Record c = new Record("2014-01-01 23:01:59 3 ruku bbb");
         System.out.println(c);
+
+        Record d = new Record("2014-01-01 23:01:59 3 ruku a");
         System.out.println(d);
-        System.out.println(new Record("111 4 asasa       asasasas"));
 
-        System.out.println(new Record(new Date(), 1, "      zxzxc", " ddd"));
-
-       // System.out.println(new Record("111 4            asasa            asasasas"));
     }
 }
