@@ -50,7 +50,7 @@ public class Record {
     public Record(String parametersAsString) {
         // get all the arguments as array of objects
         Object[] objParameters = parseParameters(parametersAsString);
-        // and separate them into the
+        // and separate them
         Date date = (Date) objParameters[0];
         int importance = Integer.parseInt((String) objParameters[1]);
         String source = (String) objParameters[2];
@@ -85,37 +85,33 @@ public class Record {
      * @throws IllegalArgumentException in case of inappropriate values of arguments
      */
     private void checkParameters(Date date, int importance, String source, String errorMessage) {
-        if (checkDate(date)) {
+        if (check(date)) {
             throw new IllegalArgumentException("Date cannot be null");
         }
-        if (checkImportance(importance)) {
-            throw new IllegalArgumentException("Importance must be in 1..4 range!");
+        if (check(importance)) {
+            throw new IllegalArgumentException("Importance must be in " + IMPORTANCE_MIN_VALUE + ".." + IMPORTANCE_MAX_VALUE + " range!");
         }
-        if (checkSource(source)) {
+        if (check(source)) {
             throw new IllegalArgumentException("Source cannot be empty!");
         }
-        if (checkErrorMessage(errorMessage)) {
+        if (check(errorMessage)) {
             throw new IllegalArgumentException("Error message cannot be empty!");
         }
     }
 
     /**
-     * Checkers
+     * Set of check methods
      */
-    private boolean checkDate(Date date) {
+    private boolean check(Date date) {
         return (date == null);
     }
 
-    private boolean checkImportance(int importance) {
+    private boolean check(int importance) {
         return (importance < IMPORTANCE_MIN_VALUE || importance > IMPORTANCE_MAX_VALUE);
     }
 
-    private boolean checkSource(String source) {
+    private boolean check(String source) {
         return (source == null || source.trim().equals(""));
-    }
-
-    private boolean checkErrorMessage(String errorMessage) {
-        return (errorMessage == null || errorMessage.trim().equals(""));
     }
 
     /**
@@ -163,7 +159,10 @@ public class Record {
     }
 
     /**
+     * Method converts integer argument into its String representation
+     *
      * @return String representation of importance field
+     * @throws IllegalArgumentException in case of error value
      */
     private String getStatus(int importance) {
         switch (importance) {
@@ -180,7 +179,14 @@ public class Record {
         }
     }
 
-    public Date parseDate(String strDate) {
+    /**
+     * Method parses the String into the Date object
+     *
+     * @param strDate String contains date in a specified format 'timePattern'
+     * @return Date object which contains parsed date
+     * @throws IllegalArgumentException instead of ParseException;
+     */
+    private Date parseDate(String strDate) {
         try {
             return new SimpleDateFormat(timePattern).parse(strDate);
         } catch (ParseException e) {
