@@ -21,14 +21,36 @@ public class TestJournal {
         Record c = new Record("2014-01-01 23:01:59 3 ruku bbb");
         System.out.println(c);
 
-        Record d = new Record("2014-01-01 23:01:59 3 ruku avvvvv\n\n\nvvv");
+        Record d = new Record("2014-01-01 23:01:59 4 ruku avvvvv\n\n\nvvv");
         System.out.println(d);
 
-        Journal j = new Journal();
+        Journal j = new Journal(2);
         j.add(a);
         j.add(b);
-d = c;
-        System.out.println(c.equals(d));
+        System.out.println(j);
+
+        j.removeAll();
+        System.out.println(j);
+
+        j.add(a);
+        System.out.println(j);
+        j.add(b);
+        System.out.println(j);
+        j.add(c);
+        System.out.println(j);
+        j.add(d);
+        System.out.println(j);
+
+        j.remove(b);
+        System.out.println(j);
+
+        j.add(a);
+        System.out.println(j);
+
+        j.remove(0);
+        System.out.println(j);
+
+        j.remove(0,1);
         System.out.println(j);
 
     }

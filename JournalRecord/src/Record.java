@@ -4,11 +4,13 @@
  * @author cortisol
  */
 
+import com.sun.org.apache.regexp.internal.RE;
+
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
-public class Record {
+public class Record implements Comparable {
 
     /**
      * Block of fields
@@ -164,6 +166,21 @@ public class Record {
     }
 
     /**
+     * Method parses the String into the Date object
+     *
+     * @param strDate String contains date in a specified format 'timePattern'
+     * @return Date object which contains parsed date
+     * @throws IllegalArgumentException instead of ParseException;
+     */
+    private Date parseDate(String strDate) {
+        try {
+            return new SimpleDateFormat(timePattern).parse(strDate);
+        } catch (ParseException e) {
+            throw new IllegalArgumentException("Wrong date format!");
+        }
+    }
+
+    /**
      * Method converts integer argument into its String representation
      *
      * @return String representation of importance field
@@ -181,21 +198,6 @@ public class Record {
                 return "!!!!!";
             default:
                 throw new IllegalArgumentException("Importance must be in 1..4 range!");
-        }
-    }
-
-    /**
-     * Method parses the String into the Date object
-     *
-     * @param strDate String contains date in a specified format 'timePattern'
-     * @return Date object which contains parsed date
-     * @throws IllegalArgumentException instead of ParseException;
-     */
-    private Date parseDate(String strDate) {
-        try {
-            return new SimpleDateFormat(timePattern).parse(strDate);
-        } catch (ParseException e) {
-            throw new IllegalArgumentException("Wrong date format!");
         }
     }
 
@@ -227,5 +229,21 @@ public class Record {
             return (eqDate && eqImportance && eqSource && eqErrorMessage);
         }
         return false;
+    }
+
+    /**
+     * @param otherRecord
+     * @return
+     */
+    @Override
+    public int compareTo(Object otherRecord) {
+        int eqDate = this.date.compareTo(((Record) otherRecord).date);
+        int eqImportance = this.importance - ((Record) otherRecord).importance;
+        int eqSource = this.source.compareTo(((Record) otherRecord).source);
+        int eqErrorMessage = this.errorMessage.compareTo(((Record) otherRecord).errorMessage);
+        if (this.equals((Record) otherRecord)) return 0;
+        //else if (eqDate < 0 && eqSource < 0 && eqErrorMessage < 0 && eqImportance < 0) return 1;
+        //else return -1;
+        return 1;
     }
 }
