@@ -1,4 +1,6 @@
 /**
+ * Main test class
+ *
  * @author cortisol
  */
 
@@ -21,6 +23,13 @@ public class TestJournal {
 
         Record d = new Record("2014-01-01 23:01:59 3 ruku avvvvv\n\n\nvvv");
         System.out.println(d);
+
+        Journal j = new Journal();
+        j.add(a);
+        j.add(b);
+d = c;
+        System.out.println(c.equals(d));
+        System.out.println(j);
 
     }
 }

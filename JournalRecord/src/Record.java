@@ -1,10 +1,11 @@
 /**
+ * Class Record
+ *
  * @author cortisol
  */
 
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
-import java.util.Arrays;
 import java.util.Date;
 
 public class Record {
@@ -209,5 +210,22 @@ public class Record {
                 getStatus(importance) + SEPARATOR +
                 source + SEPARATOR +
                 errorMessage;
+    }
+
+    /**
+     * Compares this.object to another
+     *
+     * @param otherRecord other instance of Record class
+     * @return boolean result of comparing objects
+     */
+    public boolean equals(Record otherRecord) {
+        if (otherRecord != null) {
+            boolean eqDate = this.date.equals(otherRecord.date);
+            boolean eqImportance = this.importance == otherRecord.importance;
+            boolean eqSource = this.source.equals(otherRecord.source);
+            boolean eqErrorMessage = this.errorMessage.equals(otherRecord.errorMessage);
+            return (eqDate && eqImportance && eqSource && eqErrorMessage);
+        }
+        return false;
     }
 }
