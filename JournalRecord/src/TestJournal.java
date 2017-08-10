@@ -53,5 +53,8 @@ public class TestJournal {
         j.remove(0,1);
         System.out.println(j);
 
+        j.add(b);
+        System.out.println(j);
+
     }
 }

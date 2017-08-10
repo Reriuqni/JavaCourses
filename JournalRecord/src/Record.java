@@ -4,8 +4,6 @@
  * @author cortisol
  */
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
