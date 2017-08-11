@@ -230,7 +230,6 @@ public class Record implements Comparable {
     }
 
     /**
-     *
      * @return Date object
      */
     Date getDate() {
@@ -238,7 +237,6 @@ public class Record implements Comparable {
     }
 
     /**
-     *
      * @return importace int value
      */
     int getImportance() {
@@ -246,7 +244,6 @@ public class Record implements Comparable {
     }
 
     /**
-     *
      * @return source String value
      */
     String getSource() {
@@ -254,7 +251,6 @@ public class Record implements Comparable {
     }
 
     /**
-     *
      * @return errorMessage String value
      */
     String getErrorMessage() {

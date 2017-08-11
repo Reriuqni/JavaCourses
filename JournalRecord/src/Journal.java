@@ -168,6 +168,7 @@ public class Journal {
 
     /**
      * Checks if index is in 0..this.index range
+     *
      * @param index int value
      */
     private void checkIndex(int index) {
@@ -176,8 +177,9 @@ public class Journal {
 
     /**
      * Checks if index is in 0..this.index range and fromIndex is less than toIndex
+     *
      * @param fromIndex int value
-     * @param toIndex int value
+     * @param toIndex   int value
      */
     private void checkIndex(int fromIndex, int toIndex) {
         checkIndex(fromIndex);
@@ -187,6 +189,7 @@ public class Journal {
 
     /**
      * Checks if Record is not null
+     *
      * @param record Record object
      */
     private void checkRecord(Record record) {
@@ -195,6 +198,7 @@ public class Journal {
 
     /**
      * Expands size of this.Journal and copies content
+     *
      * @param newSize int value
      */
     private void expandJournal(int newSize) {
@@ -204,6 +208,7 @@ public class Journal {
 
     /**
      * Checks if Date is not null
+     *
      * @param date Date object
      */
     private void checkDate(Date date) {
