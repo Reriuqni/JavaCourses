@@ -50,11 +50,31 @@ public class TestJournal {
         j.remove(0);
         System.out.println(j);
 
-        j.remove(0,1);
+        j.remove(0, 1);
         System.out.println(j);
 
         j.add(b);
         System.out.println(j);
 
+        Journal z = new Journal();
+        z.add(a);
+        z.add(b);
+        System.out.println(z);
+
+        j.add(z);
+        System.out.println(j);
+
+        j.add(c);
+        System.out.println("filt" + j.filter("bbb"));
+
+        Date from = new Date();
+        from.setTime(1111111);
+
+        Date to = new Date();
+        //to.setTime();
+        System.out.println(from.toString());
+        System.out.println(to.toString());
+
+        System.out.println("filtdate" + j.filter(from, to));
     }
 }

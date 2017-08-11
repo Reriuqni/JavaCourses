@@ -213,7 +213,7 @@ public class Record implements Comparable {
     }
 
     /**
-     * Compares this.object to another
+     * Method compares this.object to another
      *
      * @param otherRecord other instance of Record class
      * @return boolean result of comparing objects
@@ -227,6 +227,38 @@ public class Record implements Comparable {
             return (eqDate && eqImportance && eqSource && eqErrorMessage);
         }
         return false;
+    }
+
+    /**
+     *
+     * @return Date object
+     */
+    Date getDate() {
+        return (Date) this.date.clone();
+    }
+
+    /**
+     *
+     * @return importace int value
+     */
+    int getImportance() {
+        return this.importance;
+    }
+
+    /**
+     *
+     * @return source String value
+     */
+    String getSource() {
+        return this.source;
+    }
+
+    /**
+     *
+     * @return errorMessage String value
+     */
+    String getErrorMessage() {
+        return this.errorMessage;
     }
 
     /**
