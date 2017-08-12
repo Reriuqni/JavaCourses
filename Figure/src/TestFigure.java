@@ -1,5 +1,9 @@
 public class TestFigure {
+
+
+
     public static void main(String[] argv) {
+
 
         Rectangle rectangle = new Rectangle(40, 20);
         Square square = new Square(20);
@@ -44,5 +48,6 @@ public class TestFigure {
         System.out.println(tr.getSquare());
         System.out.println(tr.getPerimeter());
         System.out.println(tr);
+
     }
 }
