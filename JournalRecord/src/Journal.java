@@ -5,6 +5,7 @@
  */
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 
 public class Journal {
@@ -15,7 +16,7 @@ public class Journal {
     private Record[] setOfRecords;
 
     /**
-     * Index of cursor
+     * Index of current position
      */
     private int index;
 
@@ -150,16 +151,59 @@ public class Journal {
         } else throw new IllegalArgumentException("Date 'from' equals or less than date 'to'!");
     }
 
+    /**
+     * Method sorts Journal by date
+     */
     public void sortByDate() {
+        Comparator<Record> cmp = new Comparator<Record>() {
+            @Override
+            public int compare(Record o1, Record o2) {
+                return o1.getDate().compareTo(o2.getDate());
+            }
+        };
+        Arrays.sort(this.setOfRecords, cmp);
     }
 
+    /**
+     * Method sorts Journal by importance and date
+     */
     public void sortByImportanceDate() {
+        this.sortByDate();
+        Comparator<Record> cmp = new Comparator<Record>() {
+            @Override
+            public int compare(Record o1, Record o2) {
+                return o1.getImportance() - o2.getImportance();
+            }
+        };
+        Arrays.sort(this.setOfRecords, cmp);
     }
 
-    public void sortByImportanceSourceDate() {
-    }
-
+    /**
+     * Method sorts Journal by source and date
+     */
     public void sortBySourceDate() {
+        this.sortByDate();
+        Comparator<Record> cmp = new Comparator<Record>() {
+            @Override
+            public int compare(Record o1, Record o2) {
+                return o1.getSource().compareTo(o2.getSource());
+            }
+        };
+        Arrays.sort(this.setOfRecords, cmp);
+    }
+
+    /**
+     * Method sorts Journal by importance, source and date
+     */
+    public void sortByImportanceSourceDate() {
+        this.sortBySourceDate();
+        Comparator<Record> cmp = new Comparator<Record>() {
+            @Override
+            public int compare(Record o1, Record o2) {
+                return o1.getImportance() - o2.getImportance();
+            }
+        };
+        Arrays.sort(this.setOfRecords, cmp);
     }
 
     /**
@@ -239,9 +283,14 @@ public class Journal {
      */
     @Override
     public String toString() {
-        return "Journal{" +
-                "setOfRecords=" + Arrays.toString(setOfRecords) +
-                ", index=" + index +
-                '}';
+        String str = "------------------------------------\n";
+        for (Record record : this.setOfRecords) {
+            if (record != null) {
+                str = str.concat(record.toString());
+                str = str.concat("\n");
+            }
+        }
+        str = str.concat("------------------------------------");
+        return str;
     }
 }

@@ -8,7 +8,7 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
-public class Record implements Comparable {
+public class Record {
 
     /**
      * Block of fields
@@ -200,6 +200,27 @@ public class Record implements Comparable {
     }
 
     /**
+     * @return Date object
+     */
+    public Date getDate() {
+        return (Date) this.date.clone();
+    }
+
+    /**
+     * @return importace int value
+     */
+    public int getImportance() {
+        return this.importance;
+    }
+
+    /**
+     * @return source String value
+     */
+    public String getSource() {
+        return this.source;
+    }
+
+    /**
      * Overrides toString() method for proper representation of our Object
      *
      * @return String representation
@@ -227,49 +248,5 @@ public class Record implements Comparable {
             return (eqDate && eqImportance && eqSource && eqErrorMessage);
         }
         return false;
-    }
-
-    /**
-     * @return Date object
-     */
-    Date getDate() {
-        return (Date) this.date.clone();
-    }
-
-    /**
-     * @return importace int value
-     */
-    int getImportance() {
-        return this.importance;
-    }
-
-    /**
-     * @return source String value
-     */
-    String getSource() {
-        return this.source;
-    }
-
-    /**
-     * @return errorMessage String value
-     */
-    String getErrorMessage() {
-        return this.errorMessage;
-    }
-
-    /**
-     * @param otherRecord
-     * @return
-     */
-    @Override
-    public int compareTo(Object otherRecord) {
-        int eqDate = this.date.compareTo(((Record) otherRecord).date);
-        int eqImportance = this.importance - ((Record) otherRecord).importance;
-        int eqSource = this.source.compareTo(((Record) otherRecord).source);
-        int eqErrorMessage = this.errorMessage.compareTo(((Record) otherRecord).errorMessage);
-        if (this.equals((Record) otherRecord)) return 0;
-        //else if (eqDate < 0 && eqSource < 0 && eqErrorMessage < 0 && eqImportance < 0) return 1;
-        //else return -1;
-        return 1;
     }
 }
