@@ -26,6 +26,12 @@ public class Record {
     private static final String timePattern = "yyyy-MM-dd HH:mm:ss";
     private static final int IMPORTANCE_MIN_VALUE = 1;
     private static final int IMPORTANCE_MAX_VALUE = 4;
+    private static final int LENGTH_OF_IMPORTANCE = 5;
+
+    private static final String strImportant = ".";
+    private static final String strMediumImportant = "!";
+    private static final String strHighImportant = "!!!";
+    private static final String strCriticalImportant = "!!!!!";
 
     /**
      * First constructor which gets parameters as separated values
@@ -151,7 +157,8 @@ public class Record {
         // the first parameter is the instance of Date class
         objParameters[0] = parseDate(strParameters[0] + SEPARATOR + strParameters[1]);
         // second and others - Integer and 2 String objects, where 3-th parameter cannot contain ' '
-        for (int i = 1; i < COUNT_OF_FIELDS; i++) objParameters[i] = strParameters[i + 1];
+        objParameters[1] = parseImportanceString(strParameters[2]);
+        for (int i = 2; i < COUNT_OF_FIELDS; i++) objParameters[i] = strParameters[i + 1];
         // if 'errorMessage' contains ' ', add the remained words to the last parameter
         if (strParameters.length > (COUNT_OF_FIELDS + 1)) {
             c = strParameters.length - (COUNT_OF_FIELDS + 1);
@@ -179,24 +186,45 @@ public class Record {
     }
 
     /**
+     * Method parses the String into the Integer object
+     *
+     * @param str String representation of importance
+     * @return Integer object
+     */
+    private Object parseImportanceString(String str) {
+        if (str.equals(strImportant)) return Integer.toString(1);
+        if (str.equals(strMediumImportant)) return Integer.toString(2);
+        if (str.equals(strHighImportant)) return Integer.toString(3);
+        if (str.equals(strCriticalImportant)) return Integer.toString(4);
+        throw new IllegalArgumentException("Incorrect importance string!");
+    }
+
+    /**
      * Method converts integer argument into its String representation
      *
      * @return String representation of importance field
      * @throws IllegalArgumentException in case of error value
      */
     private String getStatus(int importance) {
+        StringBuilder sb = new StringBuilder("");
         switch (importance) {
             case 1:
-                return ".    ";
+                sb.append(strImportant);
+                break;
             case 2:
-                return "!    ";
+                sb.append(strMediumImportant);
+                break;
             case 3:
-                return "!!!  ";
+                sb.append(strHighImportant);
+                break;
             case 4:
-                return "!!!!!";
+                sb.append(strCriticalImportant);
+                break;
             default:
                 throw new IllegalArgumentException("Importance must be in " + IMPORTANCE_MIN_VALUE + ".." + IMPORTANCE_MAX_VALUE + "range!");
         }
+        for (int i = LENGTH_OF_IMPORTANCE - sb.toString().length(); i > 0; i--) sb.append(SEPARATOR);
+        return sb.toString();
     }
 
     /**

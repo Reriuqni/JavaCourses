@@ -13,9 +13,10 @@ public class TestJournal {
         Date time = new Date();
         time.setTime(6747473);
         Record a = new Record(time, 1, "kuku", "achtung");
-        Record b = new Record("2014-04-12       23:59:59       2 kuku     aaa    d fg dfg ffds_\ngddddfg");
-        Record c = new Record("2014-01-01 23:01:59 3 ruku bbb");
-        Record d = new Record("2014-02-01 23:01:59 4 ruku avvvvv\n\n\nvvv");
+        Record b = new Record("2014-04-12       23:59:59       . kuku     aaa    d fg dfg ffds_\ngddddfg");
+        Record c = new Record("2014-01-01 23:01:59 ! ruku bbb");
+        Record d = new Record("2014-02-01 23:01:59 !!! ruku avvvvv\n\n\nvvv");
+        Record e = new Record("2014-02-02 13:01:23 !!!!! ruku avvvvv\n\n\nvvv");
 
         Journal j = new Journal(2);
         j.add(a);
@@ -66,6 +67,7 @@ public class TestJournal {
         j.add(b);
         j.add(c);
         j.add(d);
+        j.add(e);
 
         j.sortByDate();
 
