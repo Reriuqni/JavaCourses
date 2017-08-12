@@ -4,7 +4,6 @@ public class TestFigure {
         Rectangle rectangle = new Rectangle(40, 20);
         Square square = new Square(20);
 
-*
         System.out.println(rectangle.getPerimeter());
         System.out.println(rectangle.getSquare());
         System.out.println(square.getPerimeter());
@@ -15,7 +14,7 @@ public class TestFigure {
         System.out.println(circle.getSquare());
 
         Figure[] figures = {rectangle, square, circle};
-        for (Figure figure: figures) {
+        for (Figure figure : figures) {
             System.out.println(figure);
         }
 
@@ -32,5 +31,18 @@ public class TestFigure {
         Square s = (Square) r;
 
         System.out.println(s);
+
+        EquilateralTriangle eq = new EquilateralTriangle(30);
+        System.out.println(eq.getSquare());
+        System.out.println(eq);
+
+        IsoscelesTriangle is = new IsoscelesTriangle(20, 30);
+        System.out.println(is.getSquare());
+        System.out.println(is);
+
+        Triangle tr = new Triangle(3,4,5);
+        System.out.println(tr.getSquare());
+        System.out.println(tr.getPerimeter());
+        System.out.println(tr);
     }
 }

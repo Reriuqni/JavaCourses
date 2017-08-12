@@ -31,7 +31,7 @@ public class Rectangle extends Figure {
 
     @Override
     public double getPerimeter() {
-        return 2 * (Math.abs(width) + Math.abs(length));
+        return 2 * (width + length);
     }
 
     @Override
