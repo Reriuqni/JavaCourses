@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class TestJournal {
 
-    public static void main(String[] args) {git
+    public static void main(String[] args) {
 
         Date time = new Date();
         time.setTime(6747473);
