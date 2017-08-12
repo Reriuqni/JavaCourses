@@ -140,16 +140,13 @@ public class Journal {
      * @throws IllegalArgumentException in case of wrong Date values
      */
     public Journal filter(Date fromDate, Date toDate) {
-        check(fromDate);
-        check(toDate);
-        if (fromDate.compareTo(toDate) < 0) {
-            Journal filterJournal = new Journal();
-            for (Record record : this.setOfRecords) {
-                if (record != null && record.getDate().compareTo(fromDate) >= 0 && record.getDate().compareTo(toDate) <= 0)
-                    filterJournal.add(record);
-            }
-            return filterJournal;
-        } else throw new IllegalArgumentException("Date 'from' less than date 'to'!");
+        check(fromDate, toDate);
+        Journal filterJournal = new Journal();
+        for (Record record : this.setOfRecords) {
+            if (record != null && record.getDate().compareTo(fromDate) >= 0 && record.getDate().compareTo(toDate) <= 0)
+                filterJournal.add(record);
+        }
+        return filterJournal;
     }
 
     /**
@@ -232,6 +229,18 @@ public class Journal {
      */
     private void check(Date date) {
         if (date == null) throw new IllegalArgumentException("Date cannot be null");
+    }
+
+    /**
+     * Checks if Dates are not null
+     *
+     * @param fromDate Date object
+     * @param toDate   Date object
+     */
+    private void check(Date fromDate, Date toDate) {
+        check(fromDate);
+        check(toDate);
+        if (fromDate.compareTo(toDate) > 0) throw new IllegalArgumentException("Date 'from' less than date 'to'!");
     }
 
     /**
