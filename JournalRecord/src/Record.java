@@ -195,7 +195,7 @@ public class Record {
             case 4:
                 return "!!!!!";
             default:
-                throw new IllegalArgumentException("Importance must be in 1..4 range!");
+                throw new IllegalArgumentException("Importance must be in " + IMPORTANCE_MIN_VALUE + ".." + IMPORTANCE_MAX_VALUE + "range!");
         }
     }
 
@@ -203,7 +203,7 @@ public class Record {
      * @return Date object
      */
     public Date getDate() {
-        return (Date) this.date.clone();
+        return new Date(this.date.getTime());
     }
 
     /**

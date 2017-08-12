@@ -39,8 +39,7 @@ public class Journal {
      * @param record instance of Record class
      */
     public void add(Record record) {
-        // check record
-        checkRecord(record);
+        check(record);
         // add record to th current position
         if (setOfRecords[index] == null) setOfRecords[index] = record;
         else {
@@ -58,19 +57,20 @@ public class Journal {
      * @throws IllegalArgumentException in case if other Journal is null
      */
     public void add(Journal journal) {
-        if (journal != null) {
-            for (Record record : journal.setOfRecords) add(record);
-        } else throw new IllegalArgumentException("Journal cannot be null");
+        check(journal);
+        for (Record record : journal.setOfRecords) {
+            if (record != null) add(record);
+        }
     }
-
 
     /**
      * Method removes one Record from this.Journal and rebuilds this.Journal
      *
      * @param record instance of Record class to be removed
+     * @throws IllegalArgumentException in case of record is null
      */
     public void remove(Record record) {
-        checkRecord(record);
+        check(record);
         for (int i = 0; i < this.setOfRecords.length; i++) {
             if (this.setOfRecords[i].equals(record)) {
                 this.setOfRecords[i] = null;
@@ -87,7 +87,7 @@ public class Journal {
      * @throws IllegalArgumentException in checkIndex method in case of illegal index value
      */
     public void remove(int index) {
-        checkIndex(index);
+        check(index);
         this.setOfRecords[index] = null;
         rebuildJournal();
     }
@@ -100,7 +100,7 @@ public class Journal {
      * @throws IllegalArgumentException in checkIndex method in case of illegal index value
      */
     public void remove(int fromIndex, int toIndex) {
-        checkIndex(fromIndex, toIndex);
+        check(fromIndex, toIndex);
         for (int i = fromIndex; i <= toIndex; i++) this.setOfRecords[i] = null;
         rebuildJournal();
     }
@@ -124,7 +124,8 @@ public class Journal {
         if (strFilter != null && !strFilter.isEmpty()) {
             Journal filterJournal = new Journal();
             for (Record record : this.setOfRecords) {
-                if (record.toString().toLowerCase().contains(strFilter.toLowerCase())) filterJournal.add(record);
+                if (record != null && record.toString().toLowerCase().contains(strFilter.toLowerCase()))
+                    filterJournal.add(record);
             }
             return filterJournal;
         } else throw new IllegalArgumentException("Filter cannot be empty!");
@@ -139,16 +140,16 @@ public class Journal {
      * @throws IllegalArgumentException in case of wrong Date values
      */
     public Journal filter(Date fromDate, Date toDate) {
-        checkDate(fromDate);
-        checkDate(toDate);
+        check(fromDate);
+        check(toDate);
         if (fromDate.compareTo(toDate) < 0) {
             Journal filterJournal = new Journal();
             for (Record record : this.setOfRecords) {
-                if (record.getDate().compareTo(fromDate) >= 0 && record.getDate().compareTo(toDate) <= 0)
+                if (record != null && record.getDate().compareTo(fromDate) >= 0 && record.getDate().compareTo(toDate) <= 0)
                     filterJournal.add(record);
             }
             return filterJournal;
-        } else throw new IllegalArgumentException("Date 'from' equals or less than date 'to'!");
+        } else throw new IllegalArgumentException("Date 'from' less than date 'to'!");
     }
 
     /**
@@ -207,15 +208,56 @@ public class Journal {
     }
 
     /**
-     * Set of helper methods
+     * Overrides toString() method for proper representation of our Object
+     *
+     * @return String representation
      */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("------------------------------------\n");
+        for (Record record : this.setOfRecords) {
+            if (record != null) {
+                sb.append(record.toString());
+                sb.append("\n");
+            }
+        }
+        sb.append("------------------------------------");
+        return sb.toString();
+    }
+
+    /**
+     * Checks if Date is not null
+     *
+     * @param date Date object
+     */
+    private void check(Date date) {
+        if (date == null) throw new IllegalArgumentException("Date cannot be null");
+    }
+
+    /**
+     * Checks if Journal is not null
+     *
+     * @param journal Journal object
+     */
+    private void check(Journal journal) {
+        if (journal == null) throw new IllegalArgumentException("Journal cannot be null");
+    }
+
+    /**
+     * Checks if Record is not null
+     *
+     * @param record Record object
+     */
+    private void check(Record record) {
+        if (record == null) throw new IllegalArgumentException("Record cannot be null!");
+    }
 
     /**
      * Checks if index is in 0..this.index range
      *
      * @param index int value
      */
-    private void checkIndex(int index) {
+    private void check(int index) {
         if (index < 0 || index > this.index) throw new IllegalArgumentException("Wrong index value!");
     }
 
@@ -225,19 +267,10 @@ public class Journal {
      * @param fromIndex int value
      * @param toIndex   int value
      */
-    private void checkIndex(int fromIndex, int toIndex) {
-        checkIndex(fromIndex);
-        checkIndex(toIndex);
+    private void check(int fromIndex, int toIndex) {
+        check(fromIndex);
+        check(toIndex);
         if (fromIndex > toIndex) throw new IllegalArgumentException("Wrong index value!");
-    }
-
-    /**
-     * Checks if Record is not null
-     *
-     * @param record Record object
-     */
-    private void checkRecord(Record record) {
-        if (record == null) throw new IllegalArgumentException("Record cannot be null!");
     }
 
     /**
@@ -248,15 +281,6 @@ public class Journal {
     private void expandJournal(int newSize) {
         if (newSize < this.setOfRecords.length) throw new IllegalArgumentException("Wrong array size!");
         this.setOfRecords = Arrays.copyOf(this.setOfRecords, newSize);
-    }
-
-    /**
-     * Checks if Date is not null
-     *
-     * @param date Date object
-     */
-    private void checkDate(Date date) {
-        if (date == null) throw new IllegalArgumentException("Date cannot be null");
     }
 
     /**
@@ -274,23 +298,5 @@ public class Journal {
         }
         this.setOfRecords = Arrays.copyOf(tmpArray, tmpIndex);
         this.index = this.setOfRecords.length - 1;
-    }
-
-    /**
-     * Overrides toString() method for proper representation of our Object
-     *
-     * @return String representation
-     */
-    @Override
-    public String toString() {
-        String str = "------------------------------------\n";
-        for (Record record : this.setOfRecords) {
-            if (record != null) {
-                str = str.concat(record.toString());
-                str = str.concat("\n");
-            }
-        }
-        str = str.concat("------------------------------------");
-        return str;
     }
 }
