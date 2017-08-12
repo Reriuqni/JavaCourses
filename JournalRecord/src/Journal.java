@@ -156,13 +156,13 @@ public class Journal {
      * Method sorts Journal by date
      */
     public void sortByDate() {
-        Comparator<Record> cmp = new Comparator<Record>() {
+        Comparator<Record> cmpRecord = new Comparator<Record>() {
             @Override
             public int compare(Record o1, Record o2) {
                 return o1.getDate().compareTo(o2.getDate());
             }
         };
-        Arrays.sort(this.setOfRecords, cmp);
+        Arrays.sort(this.setOfRecords, cmpRecord);
     }
 
     /**
@@ -170,13 +170,13 @@ public class Journal {
      */
     public void sortByImportanceDate() {
         this.sortByDate();
-        Comparator<Record> cmp = new Comparator<Record>() {
+        Comparator<Record> cmpRecord = new Comparator<Record>() {
             @Override
             public int compare(Record o1, Record o2) {
                 return o1.getImportance() - o2.getImportance();
             }
         };
-        Arrays.sort(this.setOfRecords, cmp);
+        Arrays.sort(this.setOfRecords, cmpRecord);
     }
 
     /**
@@ -184,13 +184,13 @@ public class Journal {
      */
     public void sortBySourceDate() {
         this.sortByDate();
-        Comparator<Record> cmp = new Comparator<Record>() {
+        Comparator<Record> cmpRecord = new Comparator<Record>() {
             @Override
             public int compare(Record o1, Record o2) {
                 return o1.getSource().compareTo(o2.getSource());
             }
         };
-        Arrays.sort(this.setOfRecords, cmp);
+        Arrays.sort(this.setOfRecords, cmpRecord);
     }
 
     /**
@@ -198,13 +198,13 @@ public class Journal {
      */
     public void sortByImportanceSourceDate() {
         this.sortBySourceDate();
-        Comparator<Record> cmp = new Comparator<Record>() {
+        Comparator<Record> cmpRecord = new Comparator<Record>() {
             @Override
             public int compare(Record o1, Record o2) {
                 return o1.getImportance() - o2.getImportance();
             }
         };
-        Arrays.sort(this.setOfRecords, cmp);
+        Arrays.sort(this.setOfRecords, cmpRecord);
     }
 
     /**
