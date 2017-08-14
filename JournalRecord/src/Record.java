@@ -192,11 +192,18 @@ public class Record {
      * @return Integer object
      */
     private Object parseImportanceString(String str) {
-        if (str.equals(strImportant)) return Integer.toString(1);
-        if (str.equals(strMediumImportant)) return Integer.toString(2);
-        if (str.equals(strHighImportant)) return Integer.toString(3);
-        if (str.equals(strCriticalImportant)) return Integer.toString(4);
-        throw new IllegalArgumentException("Incorrect importance string!");
+        switch(str) {
+            case strImportant:
+                return Integer.toString(1);
+            case strMediumImportant:
+                return Integer.toString(2);
+            case strHighImportant:
+                return Integer.toString(3);
+            case strCriticalImportant:
+                return Integer.toString(4);
+            default:
+                throw new IllegalArgumentException("Incorrect importance string!");
+        }
     }
 
     /**
