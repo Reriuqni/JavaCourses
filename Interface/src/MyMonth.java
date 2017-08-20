@@ -11,4 +11,13 @@ enum MyMonth {
         this.nameEn = nameEn;
         this.nameUa = nameUa;
     }
+
+    @Override
+    public String toString() {
+        return this.name() + "_" + this.ordinal();
+    }
+
+    public MyMonth getValue(int i) {
+       return values()[i-1];
+    }
 }
