@@ -28,11 +28,6 @@ public class Record {
     private static final int IMPORTANCE_MAX_VALUE = 4;
     private static final int LENGTH_OF_IMPORTANCE = 5;
 
-    private static final String strImportant = ".";
-    private static final String strMediumImportant = "!";
-    private static final String strHighImportant = "!!!";
-    private static final String strCriticalImportant = "!!!!!";
-
     /**
      * First constructor which gets parameters as separated values
      *
@@ -192,18 +187,10 @@ public class Record {
      * @return Integer object
      */
     private Object parseImportanceString(String str) {
-        switch(str) {
-            case strImportant:
-                return Integer.toString(1);
-            case strMediumImportant:
-                return Integer.toString(2);
-            case strHighImportant:
-                return Integer.toString(3);
-            case strCriticalImportant:
-                return Integer.toString(4);
-            default:
-                throw new IllegalArgumentException("Incorrect importance string!");
+        for (Importance eImp : Importance.values()) {
+            if (eImp.getStrImportance().equals(str)) return Integer.toString(eImp.ordinal() + 1);
         }
+        throw new IllegalArgumentException("Incorrect importance string!");
     }
 
     /**
@@ -214,24 +201,14 @@ public class Record {
      */
     private String getStatus(int importance) {
         StringBuilder sb = new StringBuilder("");
-        switch (importance) {
-            case 1:
-                sb.append(strImportant);
-                break;
-            case 2:
-                sb.append(strMediumImportant);
-                break;
-            case 3:
-                sb.append(strHighImportant);
-                break;
-            case 4:
-                sb.append(strCriticalImportant);
-                break;
-            default:
-                throw new IllegalArgumentException("Importance must be in " + IMPORTANCE_MIN_VALUE + ".." + IMPORTANCE_MAX_VALUE + "range!");
+        for (Importance eImp : Importance.values()) {
+            if (eImp.ordinal() + 1 == importance) {
+                sb.append(eImp.getStrImportance());
+                for (int i = LENGTH_OF_IMPORTANCE - sb.toString().length(); i > 0; i--) sb.append(SEPARATOR);
+                return sb.toString();
+            }
         }
-        for (int i = LENGTH_OF_IMPORTANCE - sb.toString().length(); i > 0; i--) sb.append(SEPARATOR);
-        return sb.toString();
+        throw new IllegalArgumentException("Importance must be in " + IMPORTANCE_MIN_VALUE + ".." + IMPORTANCE_MAX_VALUE + "range!");
     }
 
     /**
