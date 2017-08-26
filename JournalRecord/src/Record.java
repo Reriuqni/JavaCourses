@@ -284,6 +284,7 @@ public class Record implements Cloneable {
 
     /**
      * Implementation of clone method
+     *
      * @return cloned Record
      */
     @Override

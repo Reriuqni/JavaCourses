@@ -84,5 +84,16 @@ public class TestJournal {
         j.sortByImportanceSourceDate();
 
         System.out.println("sort importance source date\n" + j);
+
+        Journal zzz = j.clone();
+        System.out.println("example of cloning journal\n" + zzz);
+
+        zzz.add(j);
+        System.out.println("and adding ingo to it\n" + zzz);
+
+        System.out.println("original journal\n" + j);
+
+        zzz.sortByImportanceSourceDate();
+        System.out.println("sort importance source date\n" + zzz);
     }
 }

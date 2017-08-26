@@ -311,7 +311,8 @@ public class Journal implements Cloneable {
 
     /**
      * Implementation of clone method
-     * @return cloned Record
+     *
+     * @return cloned Journal
      */
     @Override
     protected Journal clone() {
