@@ -58,8 +58,8 @@ public class Journal {
      */
     public void add(Journal journal) {
         check(journal);
-        for (Record record : journal.setOfRecords) {
-            if (record != null) add(record);
+        for (Record r : journal.setOfRecords) {
+            if (r != null) add(r);
         }
     }
 
@@ -71,9 +71,9 @@ public class Journal {
      */
     public void remove(Record record) {
         check(record);
-        for (int i = 0; i < this.setOfRecords.length; i++) {
-            if (this.setOfRecords[i].equals(record)) {
-                this.setOfRecords[i] = null;
+        for (int i = 0; i < setOfRecords.length; i++) {
+            if (setOfRecords[i].equals(record)) {
+                setOfRecords[i] = null;
                 break;
             }
         }
@@ -88,7 +88,7 @@ public class Journal {
      */
     public void remove(int index) {
         check(index);
-        this.setOfRecords[index] = null;
+        setOfRecords[index] = null;
         rebuildJournal();
     }
 
@@ -101,7 +101,7 @@ public class Journal {
      */
     public void remove(int fromIndex, int toIndex) {
         check(fromIndex, toIndex);
-        for (int i = fromIndex; i <= toIndex; i++) this.setOfRecords[i] = null;
+        for (int i = fromIndex; i <= toIndex; i++) setOfRecords[i] = null;
         rebuildJournal();
     }
 
@@ -109,8 +109,8 @@ public class Journal {
      * Method removes all Records from this.Journal and sets its size to 1 and index to 0
      */
     public void removeAll() {
-        this.setOfRecords = new Record[1];
-        this.index = 0;
+        setOfRecords = new Record[1];
+        index = 0;
     }
 
     /**
@@ -123,7 +123,7 @@ public class Journal {
     public Journal filter(String strFilter) {
         if (strFilter != null && !strFilter.isEmpty()) {
             Journal filterJournal = new Journal();
-            for (Record record : this.setOfRecords) {
+            for (Record record : setOfRecords) {
                 if (record != null && record.toString().toLowerCase().contains(strFilter.toLowerCase()))
                     filterJournal.add(record);
             }
@@ -142,7 +142,7 @@ public class Journal {
     public Journal filter(Date fromDate, Date toDate) {
         check(fromDate, toDate);
         Journal filterJournal = new Journal();
-        for (Record record : this.setOfRecords) {
+        for (Record record : setOfRecords) {
             if (record != null && record.getDate().compareTo(fromDate) >= 0 && record.getDate().compareTo(toDate) <= 0)
                 filterJournal.add(record);
         }
@@ -159,7 +159,7 @@ public class Journal {
                 return o1.getDate().compareTo(o2.getDate());
             }
         };
-        Arrays.sort(this.setOfRecords, cmpRecord);
+        Arrays.sort(setOfRecords, cmpRecord);
     }
 
     /**
@@ -173,7 +173,7 @@ public class Journal {
                 return o1.getImportance() - o2.getImportance();
             }
         };
-        Arrays.sort(this.setOfRecords, cmpRecord);
+        Arrays.sort(setOfRecords, cmpRecord);
     }
 
     /**
@@ -187,7 +187,7 @@ public class Journal {
                 return o1.getSource().compareTo(o2.getSource());
             }
         };
-        Arrays.sort(this.setOfRecords, cmpRecord);
+        Arrays.sort(setOfRecords, cmpRecord);
     }
 
     /**
@@ -201,7 +201,7 @@ public class Journal {
                 return o1.getImportance() - o2.getImportance();
             }
         };
-        Arrays.sort(this.setOfRecords, cmpRecord);
+        Arrays.sort(setOfRecords, cmpRecord);
     }
 
     /**
@@ -212,7 +212,7 @@ public class Journal {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("------------------------------------\n");
-        for (Record record : this.setOfRecords) {
+        for (Record record : setOfRecords) {
             if (record != null) {
                 sb.append(record.toString());
                 sb.append("\n");
@@ -288,8 +288,8 @@ public class Journal {
      * @param newSize int value
      */
     private void expandJournal(int newSize) {
-        if (newSize < this.setOfRecords.length) throw new IllegalArgumentException("Wrong array size!");
-        this.setOfRecords = Arrays.copyOf(this.setOfRecords, newSize);
+        if (newSize < setOfRecords.length) throw new IllegalArgumentException("Wrong array size!");
+        setOfRecords = Arrays.copyOf(setOfRecords, newSize);
     }
 
     /**
@@ -297,15 +297,15 @@ public class Journal {
      * than new Journal stored in this.Journal
      */
     private void rebuildJournal() {
-        Record[] tmpArray = new Record[this.setOfRecords.length];
+        Record[] tmpArray = new Record[setOfRecords.length];
         int tmpIndex = 0;
-        for (int i = 0; i < this.setOfRecords.length; i++) {
-            if (this.setOfRecords[i] != null) {
-                tmpArray[tmpIndex] = this.setOfRecords[i];
+        for (Record r : setOfRecords) {
+            if (r != null) {
+                tmpArray[tmpIndex] = r;
                 tmpIndex++;
             }
         }
-        this.setOfRecords = Arrays.copyOf(tmpArray, tmpIndex);
-        this.index = this.setOfRecords.length - 1;
+        setOfRecords = Arrays.copyOf(tmpArray, tmpIndex);
+        index = setOfRecords.length - 1;
     }
 }

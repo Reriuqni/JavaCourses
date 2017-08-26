@@ -10,6 +10,23 @@ import java.util.Date;
 
 public class Record {
 
+    enum Importance {
+        LowImportance("."),
+        MediumImportance("!"),
+        HighImportance("!!!"),
+        CriticalImportance("!!!!!");
+
+        private String strImportance;
+
+        Importance(String s) {
+            this.strImportance = s;
+        }
+
+        public String getStrImportance() {
+            return strImportance;
+        }
+    }
+
     /**
      * Block of fields
      */
@@ -215,21 +232,21 @@ public class Record {
      * @return Date object
      */
     public Date getDate() {
-        return new Date(this.date.getTime());
+        return (Date) date.clone();
     }
 
     /**
      * @return importace int value
      */
     public int getImportance() {
-        return this.importance;
+        return importance;
     }
 
     /**
      * @return source String value
      */
     public String getSource() {
-        return this.source;
+        return source;
     }
 
     /**
@@ -253,10 +270,10 @@ public class Record {
      */
     public boolean equals(Record otherRecord) {
         if (otherRecord != null) {
-            boolean eqDate = this.date.equals(otherRecord.date);
-            boolean eqImportance = this.importance == otherRecord.importance;
-            boolean eqSource = this.source.equals(otherRecord.source);
-            boolean eqErrorMessage = this.errorMessage.equals(otherRecord.errorMessage);
+            boolean eqDate = date.equals(otherRecord.date);
+            boolean eqImportance = importance == otherRecord.importance;
+            boolean eqSource = source.equals(otherRecord.source);
+            boolean eqErrorMessage = errorMessage.equals(otherRecord.errorMessage);
             return (eqDate && eqImportance && eqSource && eqErrorMessage);
         }
         return false;
