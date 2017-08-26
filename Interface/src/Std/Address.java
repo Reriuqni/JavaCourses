@@ -11,6 +11,12 @@ public class Address implements Cloneable {
         this.city = city;
     }
 
+    public Address(Address address) {
+        flat = address.getFlat();
+        street = address.getStreet();
+        city = address.getCity();
+    }
+
     public String getFlat() {
         return flat;
     }
@@ -36,21 +42,20 @@ public class Address implements Cloneable {
     }
 
     @Override
+    protected Address clone() {
+        try {
+            return (Address) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    @Override
     public String toString() {
         return "Address{" +
                 "flat='" + flat + '\'' +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
                 '}';
-    }
-
-    @Override
-    protected Address clone() {
-        try {
-            return (Address) super.clone();
-        }
-        catch (CloneNotSupportedException e) {
-            throw new IllegalArgumentException(e.getMessage());
-        }
     }
 }

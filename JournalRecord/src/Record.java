@@ -8,8 +8,11 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
-public class Record {
+public class Record implements Cloneable {
 
+    /**
+     * Enum for importance representation
+     */
     enum Importance {
         LowImportance("."),
         MediumImportance("!"),
@@ -277,5 +280,20 @@ public class Record {
             return (eqDate && eqImportance && eqSource && eqErrorMessage);
         }
         return false;
+    }
+
+    /**
+     * Implementation of clone method
+     * @return cloned Record
+     */
+    @Override
+    protected Record clone() {
+        try {
+            Record rec = (Record) super.clone();
+            rec.date = (Date) date.clone();
+            return rec;
+        } catch (CloneNotSupportedException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 }

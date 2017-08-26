@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 
-public class Journal {
+public class Journal implements Cloneable {
 
     /**
      * Class fields
@@ -307,5 +307,20 @@ public class Journal {
         }
         setOfRecords = Arrays.copyOf(tmpArray, tmpIndex);
         index = setOfRecords.length - 1;
+    }
+
+    /**
+     * Implementation of clone method
+     * @return cloned Record
+     */
+    @Override
+    protected Journal clone() {
+        try {
+            Journal jrn = (Journal) super.clone();
+            jrn.setOfRecords = setOfRecords.clone();
+            return jrn;
+        } catch (CloneNotSupportedException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 }
