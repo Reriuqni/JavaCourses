@@ -3,6 +3,7 @@ package Std;
 import java.util.Date;
 
 public class Student implements Cloneable {
+
     private int age;
     private String name;
     private Date birthday;

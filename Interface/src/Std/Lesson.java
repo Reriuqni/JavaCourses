@@ -1,15 +1,15 @@
 package Std;
 
-
 public class Lesson {
+
     public static void main(String[] args) {
+
         System.out.println(A.a);
         System.out.println(A.b);
+        System.out.println(new A().c);
 
         ClassB classB = new ClassB("ddd", "sss");
-
-
-
+        System.out.println(classB);
 
         /*Address address = new Address("71", "krasovskogo", "brovary");
 

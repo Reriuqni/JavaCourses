@@ -5,7 +5,6 @@ import java.util.Map;
 
 public class ClassB {
 
-
     private String a;
     private String b;
 
@@ -22,11 +21,11 @@ public class ClassB {
     }};
 
     {
-     /*   map = new HashMap<>();
+        map = new HashMap<>();
         map.put("1", "1");
         map.put("2", "2");
         map.put("3", "3");
-     */
+
         System.out.println(map);
 
         System.out.println("this is non static block");
@@ -37,5 +36,13 @@ public class ClassB {
         System.out.println("this is constructor");
         this.a = a;
         this.b = b;
+    }
+
+    @Override
+    public String toString() {
+        return "ClassB{" +
+                "a='" + a + '\'' +
+                ", b='" + b + '\'' +
+                '}';
     }
 }
