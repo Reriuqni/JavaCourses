@@ -2,11 +2,16 @@ package Lesson4;
 
 public class Error {
 
+    public static long rec(long i) {
+        return i * rec(i - 1);
+    }
+
     public static void main(String[] args) {
 
-        String num = null;
+        String num = "ololo";
         Integer i;
 
+        /*
         //TODO: monkey code
         try {
             i = Integer.valueOf(num);
@@ -17,8 +22,21 @@ public class Error {
             i = 1;
         }
         System.out.println(i);
+*/
 
-
+        try {
+            throw new RuntimeException();
+            //while (true) num += num;
+            //rec(100000);
+        } catch (OutOfMemoryError e) {
+            System.out.println("Out of memory. o_O");
+            e.printStackTrace();
+        } catch (StackOverflowError e) {
+            System.out.println("Stack overflow. O_o");
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         /*
         try {
