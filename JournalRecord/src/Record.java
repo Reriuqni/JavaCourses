@@ -227,11 +227,20 @@ public class Record implements Cloneable {
     private String getStatus(int importance) {
         StringBuilder sb = new StringBuilder("");
         switch (importance) {
-            case 1: sb.append(Importance.LowImportance.getStrImportance()); break;
-            case 2: sb.append(Importance.MediumImportance.getStrImportance()); break;
-            case 3: sb.append(Importance.HighImportance.getStrImportance()); break;
-            case 4: sb.append(Importance.CriticalImportance.getStrImportance()); break;
-            default: throw new IllegalArgumentException("Importance must be in " + IMPORTANCE_MIN_VALUE + ".." + IMPORTANCE_MAX_VALUE + "range!");
+            case 1:
+                sb.append(Importance.LowImportance.getStrImportance());
+                break;
+            case 2:
+                sb.append(Importance.MediumImportance.getStrImportance());
+                break;
+            case 3:
+                sb.append(Importance.HighImportance.getStrImportance());
+                break;
+            case 4:
+                sb.append(Importance.CriticalImportance.getStrImportance());
+                break;
+            default:
+                throw new IllegalArgumentException("Importance must be in " + IMPORTANCE_MIN_VALUE + ".." + IMPORTANCE_MAX_VALUE + "range!");
         }
         for (int i = LENGTH_OF_IMPORTANCE - sb.toString().length(); i > 0; i--) sb.append(SEPARATOR);
         return sb.toString();
