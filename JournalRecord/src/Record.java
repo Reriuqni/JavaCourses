@@ -39,6 +39,11 @@ public class Record implements Cloneable {
     private String errorMessage;
 
     /**
+     * SimpleDateFormat helper field
+     */
+    private SimpleDateFormat sdfDate = new SimpleDateFormat(timePattern);
+
+    /**
      * Block of constants
      */
     private static final int COUNT_OF_FIELDS = 4;
@@ -194,7 +199,7 @@ public class Record implements Cloneable {
      */
     private Date parseDate(String strDate) {
         try {
-            return new SimpleDateFormat(timePattern).parse(strDate);
+            return sdfDate.parse(strDate);
         } catch (ParseException e) {
             throw new IllegalArgumentException("Wrong date format!");
         }
@@ -221,14 +226,15 @@ public class Record implements Cloneable {
      */
     private String getStatus(int importance) {
         StringBuilder sb = new StringBuilder("");
-        for (Importance eImp : Importance.values()) {
-            if (eImp.ordinal() + 1 == importance) {
-                sb.append(eImp.getStrImportance());
-                for (int i = LENGTH_OF_IMPORTANCE - sb.toString().length(); i > 0; i--) sb.append(SEPARATOR);
-                return sb.toString();
-            }
+        switch (importance) {
+            case 1: sb.append(Importance.LowImportance.getStrImportance()); break;
+            case 2: sb.append(Importance.MediumImportance.getStrImportance()); break;
+            case 3: sb.append(Importance.HighImportance.getStrImportance()); break;
+            case 4: sb.append(Importance.CriticalImportance.getStrImportance()); break;
+            default: throw new IllegalArgumentException("Importance must be in " + IMPORTANCE_MIN_VALUE + ".." + IMPORTANCE_MAX_VALUE + "range!");
         }
-        throw new IllegalArgumentException("Importance must be in " + IMPORTANCE_MIN_VALUE + ".." + IMPORTANCE_MAX_VALUE + "range!");
+        for (int i = LENGTH_OF_IMPORTANCE - sb.toString().length(); i > 0; i--) sb.append(SEPARATOR);
+        return sb.toString();
     }
 
     /**
@@ -259,7 +265,7 @@ public class Record implements Cloneable {
      */
     @Override
     public String toString() {
-        return new SimpleDateFormat(timePattern).format(date) + SEPARATOR +
+        return sdfDate.format(date) + SEPARATOR +
                 getStatus(importance) + SEPARATOR +
                 source + SEPARATOR +
                 errorMessage;
