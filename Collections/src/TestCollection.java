@@ -22,12 +22,12 @@ public class TestCollection {
 
         ///////////////////////////////////////
 
-        String str = "aabbbcccceerrrrqqwqeqweqjlkhlklkasndfasdfjlkkmnzdf";
+        String str = "aabbbcccc";
 
         HashMap<Character, Integer> map = new HashMap<>();
 
         for (char c : str.toCharArray()) {
-            map.put(c, ((map.get(c) == null) ? 0 : map.get(c)) + 1);
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
 
         System.out.println(map);
