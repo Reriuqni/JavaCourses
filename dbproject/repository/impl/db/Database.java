@@ -1,4 +1,4 @@
-package repository.impl.db;
+package dbproject.repository.impl.db;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
@@ -9,7 +9,7 @@ public class Database {
         MysqlDataSource mysqlDS = new MysqlDataSource();
         mysqlDS.setURL("jdbc:mysql://localhost:3306/my_test_schema?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
         mysqlDS.setUser("root");
-        mysqlDS.setPassword("cortisol");
+        mysqlDS.setPassword("root");
         return mysqlDS;
     }
 }

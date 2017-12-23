@@ -1,10 +1,8 @@
 import domain.Student;
 import repository.StudentRepository;
 import repository.impl.StudentInMemoryRepository;
+import repository.impl.StudentMySqlStudentRepository;
 
-/**
- * @author nick
- */
 public class TestDB {
     public static void main(String[] args) {
         System.out.println("Start test");

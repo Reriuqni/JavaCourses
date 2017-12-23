@@ -1,8 +1,8 @@
-package repository.impl;
+package dbproject.repository.impl;
 
-import domain.*;
-import domain.criteria.StudentCriteria;
-import repository.StudentRepository;
+import dbproject.domain.Student;
+import dbproject.domain.criteria.StudentCriteria;
+import dbproject.repository.StudentRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class StudentInMemoryRepository implements StudentRepository {
     }
 
     @Override
-    public long add(Student student) {
+    public long create(Student student) {
         student.setId(++count);
         students.add(student);
         return student.getId();
@@ -80,6 +80,11 @@ public class StudentInMemoryRepository implements StudentRepository {
 
     @Override
     public void delete(long id) {
+
+    }
+
+    @Override
+    public void deleteAll() {
 
     }
 }

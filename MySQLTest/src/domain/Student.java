@@ -3,8 +3,8 @@ package domain;
 import domain.base.AbstractEntity;
 import lombok.*;
 
-@Getter
 @Setter
+@Getter
 @ToString(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
