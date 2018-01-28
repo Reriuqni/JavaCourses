@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class MinOfTwo {
+public class BodyMassIndex {
 
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
@@ -12,7 +12,6 @@ public class MinOfTwo {
         if (amount > 0) {
 
             String[] inputText = new String[amount];
-            String output = "";
 
             for (int i = 0; i < amount; i++) inputText[i] = s.nextLine();
 
@@ -22,12 +21,21 @@ public class MinOfTwo {
 
                 if (parameters.length < 2) throw new IllegalArgumentException("Lack of arguments");
 
-                int x = Integer.parseInt(parameters[0]);
-                int y = Integer.parseInt(parameters[1]);
+                int weight = Integer.parseInt(parameters[0]);
+                double height = Double.parseDouble(parameters[1]);
+                double bmi = weight / Math.pow(height, 2);
 
-                output = output + Math.min(x, y) + " ";
+                System.out.print(checkBMI(bmi) + " ");
             }
-            System.out.println(output);
         }
+    }
+
+    private static String checkBMI(double bmi) {
+        String str = "";
+        if (bmi >= 30.0) str = "obese";
+        if (bmi >= 25.0 && bmi < 30) str = "over";
+        if (bmi >= 18.5 && bmi < 25) str = "normal";
+        if (bmi < 18.5) str = "under";
+        return str;
     }
 }

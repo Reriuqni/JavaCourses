@@ -1,8 +1,10 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class MinOfTwo {
+public class ArithmeticProgression {
 
     public static void main(String[] args) {
+
         Scanner s = new Scanner(System.in);
 
         System.out.print("Enter amount of tests: ");
@@ -12,7 +14,6 @@ public class MinOfTwo {
         if (amount > 0) {
 
             String[] inputText = new String[amount];
-            String output = "";
 
             for (int i = 0; i < amount; i++) inputText[i] = s.nextLine();
 
@@ -20,14 +21,17 @@ public class MinOfTwo {
 
                 String[] parameters = line.split(" ");
 
-                if (parameters.length < 2) throw new IllegalArgumentException("Lack of arguments");
+                if (parameters.length < 3) throw new IllegalArgumentException("Lack of arguments");
 
-                int x = Integer.parseInt(parameters[0]);
-                int y = Integer.parseInt(parameters[1]);
+                int a = Integer.parseInt(parameters[0]);
+                int b = Integer.parseInt(parameters[1]);
+                int n = Integer.parseInt(parameters[2]);
 
-                output = output + Math.min(x, y) + " ";
+                int result = 0;
+                for (int i = 0; i < n; i++) result += a + i * b;
+
+                System.out.print(result + " ");
             }
-            System.out.println(output);
         }
     }
 }
