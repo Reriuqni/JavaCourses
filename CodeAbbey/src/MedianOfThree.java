@@ -1,6 +1,7 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class MinOfThree {
+public class MedianOfThree {
 
     public static void main(String[] args) {
 
@@ -22,12 +23,13 @@ public class MinOfThree {
 
                 if (parameters.length < 3) throw new IllegalArgumentException("Lack of arguments");
 
-                int x = Integer.parseInt(parameters[0]);
-                int y = Integer.parseInt(parameters[1]);
-                int z = Integer.parseInt(parameters[2]);
-                int min = Math.min(Math.min(x, y), z);
+                int[] arr = new int[parameters.length];
+                for (int i = 0; i < parameters.length; i++) {
+                    arr[i] = Integer.parseInt(parameters[i]);
+                }
+                Arrays.sort(arr);
+                System.out.print(arr[1] + " ");
 
-                System.out.print(min + " ");
             }
         }
     }
