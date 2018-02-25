@@ -65,10 +65,10 @@ public class PwnedPasswordChecker extends HttpServlet {
                     "<div class=\"panel-body\">Looks like your password wasn't leaked!</div></div>");
         }
         response.append("</center></div></div><div class=\"fixed-footer\"><div class=\"container-fluid\"><div class=\"row\">" +
-                "<div class=\"col-md-3 text-center\"><span class=\"glyphicon glyphicon-copyright-mark\"></span> 2018 nick</div>\n" +
-                "<div class=\"col-md-3 text-center\">This service doesn't collect any kind of personal infomation.<br/> We polite your privacy.</div>\n" +
-                "<div class=\"col-md-3 text-center\">Extra credits to JavaCoursesBrovary Team.<br/> Guys, you rock!</div>\n" +
-                "<div class=\"col-md-3 text-center\"><a href=\"https://javacoursesbrovary.slack.com/\"><span class=\"glyphicon glyphicon-globe\"></span> JavaCoursesBrovary</a></div>\n" +
+                "<div class=\"col-md-3 text-center\"><a href=\"https://haveibeenpwned.com\"><span class=\"glyphicon glyphicon-copyright-mark\"></span> haveibeenpwned.com</a></div>" +
+                "<div class=\"col-md-3 text-center\">This service doesn't collect any kind of personal infomation.<br/> We polite your privacy.</div>" +
+                "<div class=\"col-md-3 text-center\">Extra credits to JavaCoursesBrovary Team.<br/> Guys, you rock!</div>" +
+                "<div class=\"col-md-3 text-center\"><a href=\"https://javacoursesbrovary.slack.com/\"><span class=\"glyphicon glyphicon-globe\"></span> JavaCoursesBrovary</a></div>" +
                 "</div></div></div></body></html>");
 
         httpServletResponse.getWriter().print(response.toString());
