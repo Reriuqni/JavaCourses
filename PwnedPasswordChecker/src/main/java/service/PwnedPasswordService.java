@@ -40,10 +40,8 @@ public class PwnedPasswordService {
      * @return string answer
      */
     public String checkHashedPassword(String strPassToCheck) {
-        checkString(strPassToCheck);
-        String answer, strHash = getSHA1Hash(strPassToCheck);
-        checkString(strHash);
-        int times = countOfHashesInBase(strHash);
+        String answer;
+        int times = getCountOfHashedPassword(strPassToCheck);
         if (times != 0) {
             answer = "Your password found " + times + " times! It's better to change it.";
         } else {
@@ -53,13 +51,26 @@ public class PwnedPasswordService {
     }
 
     /**
-     * Method get map and search it with given hash
+     * Main method which also rocks
+     *
+     * @param strPassToCheck contains password we want to check
+     * @return count of times password was found
+     */
+    public int getCountOfHashedPassword(String strPassToCheck) {
+        checkString(strPassToCheck);
+        String strHash = getSHA1Hash(strPassToCheck);
+        checkString(strHash);
+        return getCountOfHashesFromBase(strHash);
+    }
+
+    /**
+     * Method gets map and searches it with a given hash
      *
      * @param strHash contains hash
      * @return count of times hash was found
      */
-    private int countOfHashesInBase(String strHash) {
-        Map<String, Integer> hashedPasswords = getSHA1HashesFromServer(strHash.substring(INDEX_START, INDEX_END));
+    private int getCountOfHashesFromBase(String strHash) {
+        Map<String, Integer> hashedPasswords = getMapOfSHA1HashesFromServer(strHash.substring(INDEX_START, INDEX_END));
         for (Map.Entry<String, Integer> entry : hashedPasswords.entrySet()) {
             if (entry.getKey().equals(strHash.substring(INDEX_END, strHash.length()))) {
                 return entry.getValue();
@@ -69,7 +80,7 @@ public class PwnedPasswordService {
     }
 
     /**
-     * Method check of str is empty or null
+     * Method checks if str is empty or null
      *
      * @param str
      */
@@ -98,10 +109,10 @@ public class PwnedPasswordService {
     /**
      * Method open connection and passes values to service then make a map with hashes and counts of them
      *
-     * @param str contains first 5 chars of SHA-1 hash
+     * @param str contains must contain first 5 chars of SHA-1 hash
      * @return HashMap which contains hashes and counts of them from service
      */
-    private Map<String, Integer> getSHA1HashesFromServer(String str) {
+    private Map<String, Integer> getMapOfSHA1HashesFromServer(String str) {
         Map<String, Integer> hashedPasswords = new HashMap<>();
         try {
             URL url = new URL("https://api.pwnedpasswords.com/range/" + str);
