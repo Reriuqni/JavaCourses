@@ -9,8 +9,8 @@
  */
 
 package util;
-import service.PwnedPasswordService;
 
+import service.PwnedPasswordService;
 import java.util.Scanner;
 
 public class TestPwnedPasswordChecker {
